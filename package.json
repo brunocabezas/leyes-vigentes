@@ -1,0 +1,19 @@
+{
+  "name": "leyes-vigentes",
+  "version": "0.1.0",
+  "description": "",
+  "main": "\"\"",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/brunocabezas/leyes-vigentes.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/brunocabezas/leyes-vigentes/issues"
+  },
+  "homepage": "https://github.com/brunocabezas/leyes-vigentes#readme"
+}
