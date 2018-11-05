@@ -4,7 +4,9 @@
   "description": "",
   "main": "\"\"",
   "scripts": {
-    "test": "test"
+    "test": "test",
+    "xml:file": "node ./scripts/XMLToJsonFile.js",
+    "xml:separate": "node ./scripts/XMLToSeparateFiles.js"
   },
   "repository": {
     "type": "git",
