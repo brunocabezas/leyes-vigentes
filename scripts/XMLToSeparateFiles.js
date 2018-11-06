@@ -1,27 +1,37 @@
 const fs = require("fs");
+const path = require("path");
 const parseString = require("/usr/local/lib/node_modules/xml2js/lib/xml2js.js")
   .parseString;
 
 // parses input file and creates separated json files, the files are named
 // by the value obtained using the attr param on the
-const defaultGetData = d => d.Normas.Norma;
+const defaultGetData = d => {
+  // console.log(d);
+  return (d && d.Normas && d.Normas.Norma) || null;
+};
 
 const toSeparateFilesByAttr = (
-  file: "./data/leyes.xml",
-  attr: "idNorma",
-  getData: defaultGetData
+  file = "../data/small_leyes.xml",
+  attr = "idNorma",
+  getData = defaultGetData
 ) =>
-  parseString(file, (err, result) => {
-    // Array of laws
+  parseString(fs.readFileSync(path.resolve(__dirname, file)), (err, result) => {
     const arrayOfData = getData(result);
-    for (let law of arrayOfLaws) {
-      const identifier = law.$[attr];
+    if (!arrayOfData) {
+      return console.error("No XML data defined with current getter");
+    }
+    return arrayOfData.forEach(item => {
+      const identifier = item["$"][attr];
+      // if data/separate doesn't exists, creating directory
+      if (!fs.existsSync(path.resolve(__dirname, `../data/separate/`))) {
+        fs.mkdirSync(path.resolve(__dirname, `../data/separate/`), 0744);
+      }
       fs.writeFileSync(
-        `./data/separate/${identifier}.json`,
+        path.resolve(__dirname, `../data/separate/${identifier}.json`),
         JSON.stringify(result),
         "utf8"
       );
-    }
+    });
   });
 
-export default toSeparateFilesByAttr;
+module.exports = toSeparateFilesByAttr();
