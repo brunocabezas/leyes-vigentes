@@ -5,8 +5,8 @@
   "main": "\"\"",
   "scripts": {
     "test": "jest",
-    "xml:file": "node ./scripts/XMLToJsonFile.js",
-    "xml:separate": "node ./scripts/XMLToSeparateFiles.js"
+    "xml:file": "node ./scripts/XMLToJsonFile.js && node ./scripts/XMLToReducedJson.js",
+    "xml:separate": "node ./scripts/XMLToSeparateFiles.js && node ./scripts/XMLToReducedJson.js"
   },
   "repository": {
     "type": "git",
