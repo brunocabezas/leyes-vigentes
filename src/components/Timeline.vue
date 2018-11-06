@@ -1,40 +1,34 @@
-Vue.component('timeline', vue2vis.Timeline);
+<template id>
+  <div id="visNetwork"
+       ref="mynetwork"
+       style="width: 100%; height: 100vh; border: 1px solid lightgrey"></div>
+</template>
 
-new Vue({
-  el: '#app',
-  data() {
-    return {
-      groups: [],
-      items: [],
-      options: {
-        editable: true,
-      }
-    }
+<script>
+import vis from "vis";
+
+export default {
+  name: "Timeline",
+  props: {
+    msg: String
+  },
+  mounted() {
+    this.container = this.$refs.mynetwork;
+    const data = new vis.DataSet([
+      { id: 1, content: "item 1", start: "2014-04-20" },
+      { id: 2, content: "item 2", start: "2014-04-14" },
+      { id: 3, content: "item 3", start: "2014-04-18" },
+      { id: 4, content: "item 4", start: "2014-04-16", end: "2014-04-19" },
+      { id: 5, content: "item 5", start: "2014-04-25" },
+      { id: 6, content: "item 6", start: "2014-04-27", type: "point" }
+    ]);
+    this.histogram = new vis.Timeline(this.container, data, {});
   },
   created() {
-    var now = moment().minutes(0).seconds(0).milliseconds(0);
-    var groupCount = 3;
-    var itemCount = 20;
-    // create a data set with groups
-    var names = ['John', 'Alston', 'Lee', 'Grant'];
-    for (var g = 0; g < groupCount; g++) {
-      this.groups.push({
-        id: g,
-        content: names[g]
-      });
-    }
-    // create a dataset with items
-    for (var i = 0; i < itemCount; i++) {
-      var start = now.clone().add(Math.random() * 200, 'hours');
-      var group = Math.floor(Math.random() * groupCount);
-      this.items.push({
-        id: i,
-        group: group,
-        content: 'item ' + i +
-          ' <span style="color:#97B0F8;">(' + names[group] + ')</span>',
-        start: start,
-        type: 'box'
-      });
-    }
+    this.histogram = null;
   }
-});
+};
+</script>
+
+<style scoped>
+</style>
