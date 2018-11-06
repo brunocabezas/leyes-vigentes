@@ -8,7 +8,8 @@ const presets = [
         browsers: ["last 3 versions"]
       }
     }
-  ]
+  ],
+  "@vue/app"
 ];
 const plugins = [];
 module.exports = {

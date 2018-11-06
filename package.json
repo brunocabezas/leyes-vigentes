@@ -1,16 +1,14 @@
 {
   "name": "leyes-vigentes",
   "version": "0.1.0",
-  "description": "",
-  "main": "\"\"",
+  "private": true,
   "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint",
     "test": "jest",
     "xml:file": "node ./scripts/XMLToJsonFile.js && node ./scripts/XMLToReducedJson.js",
     "xml:separate": "node ./scripts/XMLToSeparateFiles.js && node ./scripts/XMLToReducedJson.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/brunocabezas/leyes-vigentes.git"
   },
   "author": "",
   "license": "ISC",
@@ -18,7 +16,18 @@
     "url": "https://github.com/brunocabezas/leyes-vigentes/issues"
   },
   "homepage": "https://github.com/brunocabezas/leyes-vigentes#readme",
+  "dependencies": {
+    "vue": "^2.5.17"
+  },
   "devDependencies": {
+    "@vue/cli-plugin-babel": "^3.1.1",
+    "@vue/cli-plugin-eslint": "^3.1.1",
+    "@vue/cli-service": "^3.1.1",
+    "@vue/eslint-config-prettier": "^4.0.0",
+    "babel-eslint": "^10.0.1",
+    "eslint": "^5.8.0",
+    "eslint-plugin-vue": "^5.0.0-0",
+    "vue-template-compiler": "^2.5.17",
     "@babel/core": "^7.1.2",
     "@babel/preset-env": "^7.1.0",
     "babel-core": "^7.0.0-bridge.0",
