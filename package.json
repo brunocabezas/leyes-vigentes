@@ -4,7 +4,9 @@
   "description": "",
   "main": "\"\"",
   "scripts": {
-    "test": "test"
+    "test": "jest",
+    "xml:file": "node ./scripts/XMLToJsonFile.js && node ./scripts/XMLToReducedJson.js",
+    "xml:separate": "node ./scripts/XMLToSeparateFiles.js && node ./scripts/XMLToReducedJson.js"
   },
   "repository": {
     "type": "git",
@@ -15,5 +17,13 @@
   "bugs": {
     "url": "https://github.com/brunocabezas/leyes-vigentes/issues"
   },
-  "homepage": "https://github.com/brunocabezas/leyes-vigentes#readme"
+  "homepage": "https://github.com/brunocabezas/leyes-vigentes#readme",
+  "devDependencies": {
+    "@babel/core": "^7.1.2",
+    "@babel/preset-env": "^7.1.0",
+    "babel-core": "^7.0.0-bridge.0",
+    "babel-jest": "^23.6.0",
+    "jest": "^23.6.0",
+    "regenerator-runtime": "^0.12.1"
+  }
 }
