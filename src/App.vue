@@ -1,17 +1,37 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <vue-ctk-date-time-picker v-model="dateRange" range-mode />
+    {{dateRange}}
+    <day-counter />
+    <Timeline />
   </div>
 </template>
 
 <script>
-import HelloWorld from "./components/HelloWorld.vue";
+import Timeline from "./components/Timeline.vue";
+import DayCounter from "./components/DayCounter.vue";
+import Vue from "vue";
+import VueCtkDateTimePicker from "vue-ctk-date-time-picker";
+import "vue-ctk-date-time-picker/dist/vue-ctk-date-time-picker.min.css";
+import store from "./store";
+
+Vue.component("vue-ctk-date-time-picker", VueCtkDateTimePicker);
 
 export default {
   name: "app",
   components: {
-    HelloWorld
+    Timeline,
+    DayCounter
+  },
+  computed: {
+    // a computed getter
+    dateRange: {
+      set: range => store.setDateRange(range),
+      get: function() {
+        // `this` points to the vm instance
+        return this.$root.$data.store.dateRange;
+      }
+    }
   }
 };
 </script>

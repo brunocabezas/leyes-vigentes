@@ -8,9 +8,10 @@
 import vis from "vis";
 
 export default {
-  name: "Timeline",
+  name: "timeline",
   props: {
-    msg: String
+    from: Date,
+    to: Date
   },
   mounted() {
     this.container = this.$refs.mynetwork;

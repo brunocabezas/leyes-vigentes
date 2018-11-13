@@ -7,9 +7,10 @@ import "./registerServiceWorker";
 Vue.config.productionTip = false;
 
 new Vue({
-  store,
+  store: store.state,
   render: h => h(App),
   data: {
+    store: store.state,
     groups: [],
     items: [],
     options: {
