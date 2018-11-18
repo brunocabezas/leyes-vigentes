@@ -8782,6 +8782,12 @@ vue-template-es2015-compiler@^1.6.0:
   version "1.6.0"
   resolved "https://registry.yarnpkg.com/vue-template-es2015-compiler/-/vue-template-es2015-compiler-1.6.0.tgz#dc42697133302ce3017524356a6c61b7b69b4a18"
 
+vue2vis@^0.0.15:
+  version "0.0.15"
+  resolved "https://registry.yarnpkg.com/vue2vis/-/vue2vis-0.0.15.tgz#7f1d26dbc458e32b80e19a8b01b2510b572675ec"
+  dependencies:
+    vis "^4.21.0"
+
 vue@^2.5.16, vue@^2.5.17:
   version "2.5.17"
   resolved "https://registry.yarnpkg.com/vue/-/vue-2.5.17.tgz#0f8789ad718be68ca1872629832ed533589c6ada"

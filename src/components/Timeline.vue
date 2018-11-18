@@ -1,35 +1,102 @@
 <template id>
-  <div id="visNetwork"
-       ref="mynetwork"
-       style="width: 100%; height: 100vh; border: 1px solid lightgrey"></div>
+  <div class="wrapper"  style="width: 100%; height: 100vh; border: 1px solid lightgrey">
+<timeline
+  ref="timeline"
+  :options="timeline.options" />
+  </div>
 </template>
 
 <script>
-import vis from "vis";
+import { Timeline } from "vue2vis";
+// function formatDate(date) {
+//   var d = new Date(date),
+//     month = "" + (d.getMonth() + 1),
+//     day = "" + d.getDate(),
+//     year = d.getFullYear();
+//
+//   if (month.length < 2) month = "0" + month;
+//   if (day.length < 2) day = "0" + day;
+//
+//   return [year, month, day].join("-");
+// }
+export function Options(start, end, editable) {
+  this.start = start;
+  this.end = end;
+  this.editable = editable;
+}
 
 export default {
   name: "timeline",
-  props: {
-    from: Date,
-    to: Date
+  data: () => ({
+    timelineEvents: "",
+    timeline: {
+      groups: [
+        {
+          id: 0,
+          content: "Group 1"
+        }
+      ],
+      items: [
+        { id: 2, group: 0, content: "item 2", start: "2014-04-14" },
+        { id: 3, group: 0, content: "item 3", start: "2014-04-18" },
+        { id: 1, group: 0, content: "item 1", start: "2014-04-20" },
+        {
+          id: 4,
+          group: 0,
+          content: "item 4",
+          start: "2014-04-16",
+          end: "2014-04-19"
+        },
+        { id: 5, group: 0, content: "item 5", start: "2014-04-25" },
+        {
+          id: 6,
+          group: 0,
+          content: "item 6",
+          start: "2014-04-27",
+          type: "point"
+        }
+      ],
+      options: {
+        editable: true
+      }
+    }
+  }),
+  components: {
+    Timeline
   },
-  mounted() {
-    this.container = this.$refs.mynetwork;
-    const data = new vis.DataSet([
-      { id: 1, content: "item 1", start: "2014-04-20" },
-      { id: 2, content: "item 2", start: "2014-04-14" },
-      { id: 3, content: "item 3", start: "2014-04-18" },
-      { id: 4, content: "item 4", start: "2014-04-16", end: "2014-04-19" },
-      { id: 5, content: "item 5", start: "2014-04-25" },
-      { id: 6, content: "item 6", start: "2014-04-27", type: "point" }
-    ]);
-    this.histogram = new vis.Timeline(this.container, data, {});
-  },
-  created() {
-    this.histogram = null;
+  methods: {
+    timelineEvent(eventName) {
+      if (this.timelineEvents.length > 500) this.timelineEvents = "";
+      this.timelineEvents += `${eventName}, `;
+    },
+    graph2dEvent(eventName) {
+      if (this.graph2dEvents.length > 500) this.graph2dEvents = "";
+      this.graph2dEvents += `${eventName}, `;
+    },
+    addNode() {
+      const id = new Date().getTime();
+      this.network.nodes.push({ id, label: "New node" });
+    },
+    addEdge() {
+      const n1 = Math.floor(Math.random() * this.network.nodes.length);
+      const n2 = Math.floor(Math.random() * this.network.nodes.length);
+      this.network.edges.push({
+        id: `${this.network.nodes[n1].id}-${this.network.nodes[n2].id}`,
+        from: this.network.nodes[n1].id,
+        to: this.network.nodes[n2].id
+      });
+    }
   }
 };
 </script>
 
 <style scoped>
+.wrapper {
+  padding: 20px 50px;
+  text-align: center;
+}
+.events {
+  text-align: left;
+  height: 70px;
+}
 </style>
