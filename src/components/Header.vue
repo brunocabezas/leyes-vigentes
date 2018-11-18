@@ -28,7 +28,7 @@ export default {
   props: { range: { type: Range } },
   methods: {
     changeRange(a) {
-      this.$emit("changeRange", a);
+      this.$emit("changeRangePicker", a);
     }
   }
 };

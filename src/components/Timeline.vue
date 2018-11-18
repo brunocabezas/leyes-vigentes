@@ -4,7 +4,10 @@
   ref="timeline"
   :options="options"
   :groups="timeline.groups"
-  :items="timeline.items" />
+  :items="timeline.items"
+    :events="['changed']"
+    @changed="myChangedCallback($event)"
+    ></vis-timeline>
   </div>
 </template>
 
@@ -81,6 +84,9 @@ export default {
         from: this.network.nodes[n1].id,
         to: this.network.nodes[n2].id
       });
+    },
+    myChangedCallback(e) {
+      this.$emit("changeRangeTimeline", e);
     }
   }
 };

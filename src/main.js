@@ -12,10 +12,7 @@ new Vue({
   data: {
     store: store.state,
     groups: [],
-    items: [],
-    options: {
-      editable: true
-    }
+    items: []
   },
   created() {
     var now = dayjs()
