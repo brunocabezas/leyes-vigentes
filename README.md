@@ -1,5 +1,15 @@
 # leyes vigentes
 
+## Next Steps
+
+- [ ] Close daterange picker when choosing last newValue
+- [ ] Style the app!
+- [ ] Mock API to test requests to api based on dates
+- [ ] Fetch when dragging on Timeline
+- [ ] Different visualizations available by tabs (data-table oriented menu, timeline, specifics stats(e.g. by-partisan, by-area))
+- [ ] Add data as a prop to app state
+- [ ] Define general statistics on current data
+
 ## Project setup
 
 ```
