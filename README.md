@@ -2,13 +2,17 @@
 
 ## Next Steps
 
-- [ ] Close daterange picker when choosing last newValue
+- [x] Close date-range-picker when choosing last newValue
 - [ ] Style the app!
 - [ ] Mock API to test requests to api based on dates
 - [ ] Fetch when dragging on Timeline
 - [ ] Different visualizations available by tabs (data-table oriented menu, timeline, specifics stats(e.g. by-partisan, by-area))
 - [ ] Add data as a prop to app state
-- [ ] Define general statistics on current data
+- [ ] Define general statistics on current data.
+- [ ] Define how to add help.
+- [ ] Format date on date-range-picker.
+- [ ] Define custom ranges on date-range-picker.
+- [ ] Check date locales on picker and timeline.
 
 ## Project setup
 
