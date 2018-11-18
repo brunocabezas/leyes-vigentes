@@ -55,12 +55,14 @@ export default {
   },
   props: { range: { type: Range } },
   computed: {
-    options: function() {
-      return {
-        start: this.range.start,
-        end: this.range.end,
-        editable: true
-      };
+    options: {
+      get: function() {
+        return {
+          start: this.range.start,
+          end: this.range.end || new Date().toISOString(),
+          editable: true
+        };
+      }
     }
   },
   methods: {

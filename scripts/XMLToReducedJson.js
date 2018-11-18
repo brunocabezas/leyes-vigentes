@@ -18,7 +18,7 @@ function parseDate(input, format) {
 const sortByDate = (a, b) => {
   // Turn your strings into dates, and then subtract them
   // to get a value that is either negative, positive, or zero.
-  return parseDate(b.date, "dd-mm-yyyy") - parseDate(a.date, "dd-mm-yyyy");
+  return parseDate(a.date, "dd-mm-yyyy") - parseDate(b.date, "dd-mm-yyyy");
 };
 
 const isValidDate = d => d instanceof Date && !isNaN(d);
@@ -35,7 +35,7 @@ const main = (
       .map(item => ({ id: item.$.idNorma, date: item.$.fechaPublicacion }))
       .filter(filterInvalidDates)
       .sort(sortByDate);
-    fs.writeFile(output, JSON.stringify(data), "utf8");
+    fs.writeFileSync(output, JSON.stringify(data), "utf8");
   });
 
 module.exports = main();

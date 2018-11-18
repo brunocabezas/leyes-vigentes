@@ -16,6 +16,7 @@
 - [ ] Add components unit tests.
 - [ ] Pdf export feature.
 - [ ] Reflect some values on url.
+- [ ] Add App loader (based on Header loading.)
 
 ## Project setup
 

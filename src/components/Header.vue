@@ -1,7 +1,20 @@
 <template >
   <div class="app-header">
     <h1 class="app-header-title">Leyes Vigentes</h1>
-    <vue-ctk-date-time-picker v-bind:disabled="loading" v-on:input="changeRange($event)" auto-close v-model="dateRange" range-mode></vue-ctk-date-time-picker>
+    <vue-ctk-date-time-picker
+      v-bind:min-date="minDate"
+      v-bind:max-date="now"
+      v-bind:disabled="loading"
+      locale="es"
+      v-on:input="changeRange($event)"
+            formatted="ddd D MMM YYYY"
+
+      auto-close
+
+       v-model="dateRange"
+
+        range-mode
+    />
   </div>
 </template>
 <script >
@@ -26,6 +39,13 @@ export default {
     },
     loading: function() {
       return this.$root.$data.store.loading;
+    },
+    now: function() {
+      return new Date().toISOString();
+    },
+    minDate: function() {
+      // set with the lowest date law
+      return new Date("01-01-1818").toISOString();
     }
   },
   props: { range: { type: Range } },
