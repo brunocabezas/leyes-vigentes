@@ -2,7 +2,7 @@
   <div id="app">
     <Header @changeRangePicker="fetchData($event)" :range="rangeToTimeline()" />
     <DayCounter />
-    <Timeline @changeRangeTimeline="fetchData($event)" :range="rangeToTimeline()"/>
+    <Timeline  :range="rangeToTimeline()"/>
     <Explorer />
   </div>
 </template>
@@ -19,7 +19,7 @@ import { Range } from "./models";
 
 // Mock any GET request to /users
 // arguments for reply are (status, data, headers)
-mock.onGet("/").reply(200, laws);
+mock.onGet("/data").reply(200, { data: laws, delayResponse: 5000 });
 
 export default {
   name: "app",
@@ -45,14 +45,14 @@ export default {
     fetchData: function(data) {
       if (!data.start || !data.end) return console.error("this is bad");
 
-      this.loading = true;
-      api
-        .get("/")
+      console.log("fetchData", data.start, data.end, data);
+      store.setLoading(true);
+      return api
+        .get("/data")
         .then(r => {
           store.setData(r.data);
         })
-        .finally(() => (this.loading = false));
-      console.log("fetchData", data.start, data.end, data);
+        .finally(() => store.setLoading(false));
     }
   }
 };

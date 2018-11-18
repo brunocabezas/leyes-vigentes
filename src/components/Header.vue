@@ -1,7 +1,7 @@
 <template >
   <div class="app-header">
     <h1 class="app-header-title">Leyes Vigentes</h1>
-    <vue-ctk-date-time-picker  v-on:input="changeRange($event)" auto-close v-model="dateRange" range-mode></vue-ctk-date-time-picker>
+    <vue-ctk-date-time-picker v-bind:disabled="loading" v-on:input="changeRange($event)" auto-close v-model="dateRange" range-mode></vue-ctk-date-time-picker>
   </div>
 </template>
 <script >
@@ -23,6 +23,9 @@ export default {
       get: function() {
         return this.range;
       }
+    },
+    loading: function() {
+      return this.$root.$data.store.loading;
     }
   },
   props: { range: { type: Range } },
