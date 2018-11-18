@@ -1,7 +1,7 @@
 <template >
   <div class="app-header">
     <h1 class="app-header-title">Leyes Vigentes</h1>
-    <vue-ctk-date-time-picker auto-close v-model="dateRange" range-mode />
+    <vue-ctk-date-time-picker  v-on:input="changeRange($event)" auto-close v-model="dateRange" range-mode></vue-ctk-date-time-picker>
   </div>
 </template>
 <script >
@@ -13,23 +13,24 @@ import "vue-ctk-date-time-picker/dist/vue-ctk-date-time-picker.min.css";
 
 Vue.component("vue-ctk-date-time-picker", VueCtkDateTimePicker);
 export default {
-  // Options / Data
   name: "Header",
   data() {
     return {};
   },
   computed: {
-    // a computed getter
     dateRange: {
       set: range => store.setDateRange(range),
       get: function() {
-        // `this` points to the vm instance
         return this.range;
       }
     }
   },
   props: { range: { type: Range } },
-  methods: {}
+  methods: {
+    changeRange(a) {
+      this.$emit("changeRange", a);
+    }
+  }
 };
 </script>
 

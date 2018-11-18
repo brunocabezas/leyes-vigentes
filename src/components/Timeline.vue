@@ -1,5 +1,5 @@
 <template id>
-  <div class="wrapper"  style="width: 100%; height: 100vh; border: 1px solid lightgrey">
+  <div class="wrapper"  style="width: 100%; height: 100%; border: 1px solid lightgrey">
 <vis-timeline
   ref="timeline"
   :options="options"
@@ -11,17 +11,7 @@
 <script>
 import { Timeline as VisTimeline } from "vue2vis";
 import { Range } from "../models";
-// function formatDate(date) {
-//   var d = new Date(date),
-//     month = "" + (d.getMonth() + 1),
-//     day = "" + d.getDate(),
-//     year = d.getFullYear();
-//
-//   if (month.length < 2) month = "0" + month;
-//   if (day.length < 2) day = "0" + day;
-//
-//   return [year, month, day].join("-");
-// }
+
 export default {
   name: "timeline",
   data: function() {
@@ -96,13 +86,13 @@ export default {
 };
 </script>
 
-<style scoped>
-.wrapper {
+<style lang="stylus" scoped>
+.wrapper
   padding: 20px 50px;
   text-align: center;
-}
-.events {
+
+.events
   text-align: left;
   height: 70px;
-}
+
 </style>

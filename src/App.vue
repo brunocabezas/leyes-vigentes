@@ -1,7 +1,6 @@
 <template>
   <div id="app">
-    <Header :range="rangeToTimeline()" />
-    {{dateRange}}
+    <Header @changeRange="fetchData($event)" :range="rangeToTimeline()" />
     <DayCounter />
     <Timeline :range="rangeToTimeline()"/>
     <Explorer />
@@ -13,7 +12,7 @@ import Timeline from "./components/Timeline.vue";
 import DayCounter from "./components/DayCounter.vue";
 import Header from "./components/Header.vue";
 import Explorer from "./components/Explorer/Explorer.vue";
-import store from "./store";
+// import store from "./store";
 import { Range } from "./models";
 
 export default {
@@ -24,16 +23,6 @@ export default {
     Explorer,
     Header
   },
-  computed: {
-    // a computed getter
-    dateRange: {
-      set: range => store.setDateRange(range),
-      get: function() {
-        // `this` points to the vm instance
-        return this.$root.$data.store.dateRange;
-      }
-    }
-  },
   methods: {
     rangeToTimeline: function() {
       const range = new Range(
@@ -41,18 +30,26 @@ export default {
         this.$root.$data.store.dateRange.end
       );
       return range;
+    },
+    fetchData: function(data) {
+      if (!data.start || !data.end) return console.error("this is bad");
+      console.log("fetchData", data.start, data.end, data);
     }
   }
 };
 </script>
 
-<style>
-#app {
-  font-family: "Avenir", Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+<style lang="stylus">
+*
+  box-sizing border-box
+#app
+  font-family "Avenir", Helvetica, Arial, sans-serif
+  -webkit-font-smoothing antialiased
+  -moz-osx-font-smoothing grayscale
+  text-align center
+  color #2c3e50
+  margin-top 60px
+  width 100%
+  height 100%
+
 </style>

@@ -13,6 +13,8 @@
 - [ ] Format date on date-range-picker.
 - [ ] Define custom ranges on date-range-picker.
 - [ ] Check date locales on picker and timeline.
+- [ ] Add components unit tests.
+- [ ] Pdf export feature.
 
 ## Project setup
 
