@@ -1,5 +1,6 @@
 const fs = require("fs");
 const path = require("path");
+const dayjs = require("dayjs");
 const parseString = require("/usr/local/lib/node_modules/xml2js/lib/xml2js.js")
   .parseString;
 
@@ -32,7 +33,10 @@ const main = (
   parseString(fs.readFileSync(file), (err, result) => {
     const arrayOfData = result.Normas.Norma;
     const data = arrayOfData
-      .map(item => ({ id: item.$.idNorma, date: item.$.fechaPublicacion }))
+      .map(item => ({
+        id: item.$.idNorma,
+        date: dayjs(item.$.fechaPublicacion).format("YYYY-MM-DD")
+      }))
       .filter(filterInvalidDates)
       .sort(sortByDate);
     fs.writeFileSync(output, JSON.stringify(data), "utf8");

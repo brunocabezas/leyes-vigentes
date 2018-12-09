@@ -1,19 +1,31 @@
 <template>
   <div id="app">
     <Header @changeRangePicker="fetchData($event)" :range="rangeToTimeline()" />
-    <DayCounter />
-    <Timeline  :range="rangeToTimeline()"/>
+    <Tabs>
+      <Tab name="List" :selected="true">
+        <List />
+      </Tab>
+      <Tab name="Timeline">
+        <Timeline  :range="rangeToTimeline()"/>
+      </Tab>
+      <Tab name="Statistics">
+        <DayCounter />
+      </Tab>
+    </Tabs>
     <Explorer />
   </div>
 </template>
 
 <script>
-import Timeline from "./components/Timeline.vue";
-import DayCounter from "./components/DayCounter.vue";
+import Timeline from "./components/Tabs/Timeline.vue";
+import DayCounter from "./components/Tabs/DayCounter.vue";
 import Header from "./components/Header.vue";
 import Explorer from "./components/Explorer/Explorer.vue";
 import api, { mock } from "./api";
 import store from "./store";
+import Tabs from "./components/Tabs/Tabs.vue";
+import List from "./components/Tabs/List.vue";
+import Tab from "./components/Tabs/Tab.vue";
 import laws from "../data/reduced.json";
 import { Range } from "./models";
 
@@ -27,6 +39,9 @@ export default {
     Timeline,
     DayCounter,
     Explorer,
+    Tabs,
+    Tab,
+    List,
     Header
   },
   data() {
@@ -50,7 +65,7 @@ export default {
       return api
         .get("/data")
         .then(r => {
-          store.setData(r.data);
+          store.setData(r.data.data);
         })
         .finally(() => store.setLoading(false));
     }

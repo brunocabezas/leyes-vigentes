@@ -4,7 +4,7 @@
   ref="timeline"
   :options="options"
   :groups="timeline.groups"
-  :items="timeline.items"
+  :items="timelineData"
     :events="['changed']"
     @changed="myChangedCallback($event)"
     ></vis-timeline>
@@ -13,7 +13,7 @@
 
 <script>
 import { Timeline as VisTimeline } from "vue2vis";
-import { Range } from "../models";
+import { Range } from "../../models";
 
 export default {
   name: "timeline",
@@ -24,7 +24,7 @@ export default {
         groups: [
           {
             id: 0,
-            content: "Group 1"
+            content: "Leyes"
           }
         ],
         items: [
@@ -55,6 +55,14 @@ export default {
   },
   props: { range: { type: Range } },
   computed: {
+    timelineData: function() {
+      return this.$root.$data.store.data.map(r => ({
+        id: parseInt(r.id, 10),
+        content: "ley" + r.id,
+        group: 0,
+        start: r.date
+      }));
+    },
     options: {
       get: function() {
         return {

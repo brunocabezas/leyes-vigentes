@@ -1,21 +1,10 @@
 <template >
   <div id="tabs-root" class="container">
-
-    <Tabs>
-      <Tab name="Services" :selected="true">
-        <h1>What we do</h1>
-      </Tab>
-      <Tab name="Pricing">
-        <h1>How much we do it for</h1>
-      </Tab>
-    </Tabs>
+explorer
 
   </div>
 </template>
 <script >
-import Tabs from "./Tabs";
-import Tab from "./Tab";
-
 export default {
   data() {
     return {};
@@ -37,10 +26,7 @@ export default {
     }
   },
   methods: {},
-  components: {
-    Tabs,
-    Tab
-  },
+  components: {},
   name: "Explorer"
 };
 </script>
