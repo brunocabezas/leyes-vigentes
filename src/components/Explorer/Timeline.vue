@@ -1,27 +1,17 @@
 <template id>
   <div class="wrapper"  style="width: 100%; height: 100vh; border: 1px solid lightgrey">
-<vis-timeline
-  ref="timeline"
-  :options="options"
-  :groups="timeline.groups"
-  :items="timeline.items" />
+    <vis-timeline
+      ref="timeline"
+      :options="options"
+      :groups="timeline.groups"
+      :items="timeline.items"
+    />
   </div>
 </template>
 
 <script>
 import { Timeline as VisTimeline } from "vue2vis";
 import { Range } from "../models";
-// function formatDate(date) {
-//   var d = new Date(date),
-//     month = "" + (d.getMonth() + 1),
-//     day = "" + d.getDate(),
-//     year = d.getFullYear();
-//
-//   if (month.length < 2) month = "0" + month;
-//   if (day.length < 2) day = "0" + day;
-//
-//   return [year, month, day].join("-");
-// }
 export default {
   name: "timeline",
   data: function() {

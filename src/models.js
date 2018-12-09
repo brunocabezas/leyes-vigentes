@@ -6,4 +6,6 @@ export function VisTimelineOptions(start, end, editable) {
 export function Range(from, to) {
   this.start = from;
   this.end = to;
+
+  this.validator = prop => typeof prop === "string" || prop === null;
 }

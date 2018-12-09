@@ -2,13 +2,21 @@
 
 ## Next Steps
 
-- [ ] Close daterange picker when choosing last newValue
+- [x] Close date-range-picker when choosing last newValue
 - [ ] Style the app!
-- [ ] Mock API to test requests to api based on dates
+- [x] Mock API to test requests to api based on dates
 - [ ] Fetch when dragging on Timeline
-- [ ] Different visualizations available by tabs (data-table oriented menu, timeline, specifics stats(e.g. by-partisan, by-area))
-- [ ] Add data as a prop to app state
-- [ ] Define general statistics on current data
+- [ ] Different visualizations tabs to see current laws: historic, list, general statistics
+- [ ] Filter laws by date, name, etc...
+- [ ] Create law detail component
+- [x] Add data as a prop to app state
+- [ ] Define how to add help.
+- [x] Format date on date-range-picker.
+- [ ] Check date locales on picker and timeline.
+- [ ] Add components unit tests.
+- [ ] Pdf export feature.
+- [ ] Reflect some filter values on url.
+- [ ] Add App loader (based on Header loading.)
 
 ## Project setup
 
@@ -16,42 +24,42 @@
 yarn install
 ```
 
-### Compiles and hot-reloads for development
+See [Configuration Reference](https://cli.vuejs.org/config/).
+
+## Development
+
+#### Compiles and hot-reloads for development
 
 ```
 yarn run serve
 ```
 
-### Compiles and minifies for production
-
-```
-yarn run build
-```
-
-### Run your tests
-
-```
-yarn run test
-```
-
-### Lints and fixes files
+#### Lints and fixes files
 
 ```
 yarn run lint
 ```
 
-### Run your end-to-end tests
+#### Run your tests
+
+```
+yarn run test
+```
+
+#### Run your end-to-end tests
 
 ```
 yarn run test:e2e
 ```
 
-### Run your unit tests
+#### Run your unit tests
 
 ```
 yarn run test:unit
 ```
 
-### Customize configuration
+#### Compiles and minifies for production
 
-See [Configuration Reference](https://cli.vuejs.org/config/).
+```
+yarn run build
+```
