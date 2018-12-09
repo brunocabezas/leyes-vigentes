@@ -24,42 +24,42 @@
 yarn install
 ```
 
-### Compiles and hot-reloads for development
+See [Configuration Reference](https://cli.vuejs.org/config/).
+
+## Development
+
+#### Compiles and hot-reloads for development
 
 ```
 yarn run serve
 ```
 
-### Compiles and minifies for production
-
-```
-yarn run build
-```
-
-### Run your tests
-
-```
-yarn run test
-```
-
-### Lints and fixes files
+#### Lints and fixes files
 
 ```
 yarn run lint
 ```
 
-### Run your end-to-end tests
+#### Run your tests
+
+```
+yarn run test
+```
+
+#### Run your end-to-end tests
 
 ```
 yarn run test:e2e
 ```
 
-### Run your unit tests
+#### Run your unit tests
 
 ```
 yarn run test:unit
 ```
 
-### Customize configuration
+#### Compiles and minifies for production
 
-See [Configuration Reference](https://cli.vuejs.org/config/).
+```
+yarn run build
+```
