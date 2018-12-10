@@ -8,7 +8,8 @@ export default {
       start: date3MonthsAgo.toLocaleDateString(),
       end: new Date().toLocaleDateString()
     },
-    data: []
+    data: [],
+    activeLaw: null
   },
   setDateRange(newValue) {
     if (this.debug) console.log("setDateRange triggered with", newValue);
@@ -21,5 +22,9 @@ export default {
   setData(newValue) {
     if (this.debug) console.log("setData triggered with", newValue);
     this.state.data = newValue;
+  },
+  setActiveLaw(newValue) {
+    if (this.debug) console.log("setActiveLaw triggered with", newValue);
+    this.state.activeLaw = newValue;
   }
 };
