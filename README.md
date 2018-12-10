@@ -5,9 +5,13 @@
 - [x] Close date-range-picker when choosing last newValue
 - [ ] Style the app!
 - [x] Mock API to test requests to api based on dates
+- [ ] Add more data attributes to laws
 - [ ] Fetch when dragging on Timeline
-- [ ] Different visualizations tabs to see current laws: historic, list, general statistics
-- [ ] Filter laws by date, name, etc...
+- [ ] Different visualizations tabs to see current laws:
+  - [ ] historic: get active law and style it, change current active law on click
+  - [ ] list: style the list
+  - [ ] general statistics: add more statistics using new data
+- [ ] Filter laws by date, name, etc... (get filterable criterias)
 - [ ] Create law detail component
 - [x] Add data as a prop to app state
 - [ ] Define how to add help.
