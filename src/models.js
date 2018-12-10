@@ -9,3 +9,7 @@ export function Range(from, to) {
 
   this.validator = prop => typeof prop === "string" || prop === null;
 }
+export function Law(id, name) {
+  this.id = id;
+  this.name = name;
+}

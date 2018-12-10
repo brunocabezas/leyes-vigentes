@@ -1,32 +1,32 @@
 <template >
-  <div id="tabs-root" class="container">
-explorer
+  <div class="explorer">
+
+    <h1 v-if="activeLaw">law {{activeLaw.id}}, created on {{activeLaw.date}} </h1>
+    <h1 v-else>No law selected</h1>
 
   </div>
 </template>
 <script >
+import { Law } from "../../models";
+
 export default {
+  name: "Explorer",
   data() {
     return {};
   },
   props: [],
   computed: {
-    dayCount: {
+    activeLaw: {
       get: function() {
-        const {
-          dateRange: { start, end }
-        } = this.$root.$data.store;
-        if (!start || !end) return "-";
-        var date1 = new Date(start);
-        var date2 = new Date(end);
-
-        var timeDiff = Math.abs(date2.getTime() - date1.getTime());
-        return Math.ceil(timeDiff / (1000 * 3600 * 24));
+        const { activeLaw } = this.$root.$data.store;
+        console.log();
+        return this.$root.$data.store.data.find(
+          l => parseInt(l.id, 10) === parseInt(activeLaw, 10)
+        );
       }
     }
   },
   methods: {},
-  components: {},
-  name: "Explorer"
+  components: {}
 };
 </script>

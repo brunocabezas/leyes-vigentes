@@ -58,7 +58,7 @@ export default {
     timelineData: function() {
       return this.$root.$data.store.data.map(r => ({
         id: parseInt(r.id, 10),
-        content: "ley" + r.id,
+        content: "ley " + r.id,
         group: 0,
         start: r.date
       }));

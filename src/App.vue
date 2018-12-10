@@ -31,7 +31,7 @@ import { Range } from "./models";
 
 // Mock any GET request to /users
 // arguments for reply are (status, data, headers)
-mock.onGet("/data").reply(200, { data: laws, delayResponse: 5000 });
+mock.onGet("/data").reply(200, { data: laws });
 
 export default {
   name: "app",
@@ -46,7 +46,8 @@ export default {
   },
   data() {
     return {
-      loading: this.$root.$data.store.loading
+      loading: this.$root.$data.store.loading,
+      activeLaw: this.$root.$data.store.activeLaw
     };
   },
   methods: {
@@ -58,9 +59,9 @@ export default {
       return range;
     },
     fetchData: function(data) {
-      if (!data.start || !data.end) return console.error("this is bad");
+      if (!data.start || !data.end) return console.error("error fetching data");
 
-      console.log("fetchData", data.start, data.end, data);
+      // console.log("fetchData", data.start, data.end, data);
       store.setLoading(true);
       return api
         .get("/data")
@@ -76,14 +77,19 @@ export default {
 <style lang="stylus">
 *
   box-sizing border-box
+
+html, body
+  max-height 100%
+  height 100%
 #app
   font-family "Avenir", Helvetica, Arial, sans-serif
   -webkit-font-smoothing antialiased
   -moz-osx-font-smoothing grayscale
   text-align center
   color #2c3e50
-  margin-top 60px
+  // margin-top 60px
   width 100%
   height 100%
+  max-height 100%
 
 </style>
