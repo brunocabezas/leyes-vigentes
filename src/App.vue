@@ -3,7 +3,7 @@
     <Header @changeRangePicker="fetchData($event)" :range="rangeToTimeline()" />
     <Tabs>
       <Tab name="List" :selected="true">
-        <List />
+        <List :laws="listData" :loading="loading"/>
       </Tab>
       <Tab name="Timeline">
         <Timeline  :range="rangeToTimeline()"/>
@@ -49,6 +49,18 @@ export default {
       loading: this.$root.$data.store.loading,
       activeLaw: this.$root.$data.store.activeLaw
     };
+  },
+  computed: {
+    listData: {
+      get: function() {
+        return this.$root.$data.store.data.map(r => ({
+          ...r,
+          id: parseInt(r.id, 10),
+          title: "ley " + r.id,
+          start: r.date
+        }));
+      }
+    }
   },
   methods: {
     rangeToTimeline: function() {
