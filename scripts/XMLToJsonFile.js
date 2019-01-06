@@ -16,10 +16,15 @@ const toFile = (
     else if (!result) throw result;
     else if (result) {
       const writePath = path.resolve(__dirname, output);
-      fs.writeFile(writePath, JSON.stringify(result), "utf8", writeError => {
-        if (writeError) throw writeError;
-        else console.log("No error. File written: " + writePath);
-      });
+      fs.writeFile(
+        writePath,
+        "[" + JSON.stringify(result) + "]",
+        "utf8",
+        writeError => {
+          if (writeError) throw writeError;
+          else console.log("No error. File written: " + writePath);
+        }
+      );
     }
   });
 };

@@ -29,11 +29,13 @@ import Timeline from "./components/Tabs/Timeline.vue";
 import List from "./components/Tabs/List.vue";
 import DayCounter from "./components/Tabs/Statistics/DayCounter.vue";
 import laws from "../data/reduced.json";
+import detailedLaws from "../data/leyes3.json";
 import { Range } from "./models";
 
 // Mock any GET request to /users
 // arguments for reply are (status, data, headers)
 mock.onGet("/data").reply(200, { data: laws });
+mock.onGet("/detail").reply(200, { data: detailedLaws });
 
 export default {
   name: "app",

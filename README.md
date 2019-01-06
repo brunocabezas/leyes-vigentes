@@ -9,7 +9,7 @@
 - [ ] Different visualizations tabs to see current laws:
   - [ ] historic
     - [x] change current active law on click
-    - [ ] get active law and style it
+    - [x] get active law and style it
     - [ ] Add info on hover at timeline items
     - [ ] Fetch and change date when dragging
   - [ ] list:
@@ -17,7 +17,7 @@
     - [ ] display tags
   - [ ] general statistics: add more statistics using new data
 - [ ] Filter laws by date, name, etc... (get filterable criteria)
-- [ ] Create law detail component
+- [x} Create law detail component
 - [x] Add data as a prop to app state
 - [ ] Define how to add help
 - [x] Format date on date-range-picker
@@ -25,7 +25,7 @@
 - [ ] Add components unit tests
 - [ ] Pdf export feature
 - [ ] Reflect some filter values on url
-- [ ] Add App loader (based on Header loading.)
+- [x] Add App loader (based on Header loading.)
 
 ## Project setup
 

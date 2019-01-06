@@ -4,12 +4,14 @@ var date3MonthsAgo = new Date();
 date3MonthsAgo.setMonth(date3MonthsAgo.getMonth() - 3);
 export default {
   state: {
-    loading: false,
+    loading: false, // loader indicator for dataº
+    detailLoading: false,
     dateRange: {
       start: date3MonthsAgo.toLocaleDateString(),
       end: new Date().toLocaleDateString()
     },
     data: [],
+    detail: null,
     // Boolean to see if vis.js timeline component is already initialized
     timelineInit: false,
     // holds data from law used on <Explore/>
@@ -23,6 +25,10 @@ export default {
     if (this.debug) console.log("setLoading triggered with", newValue);
     this.state.loading = newValue;
   },
+  setDetailLoading(newValue) {
+    if (this.debug) console.log("setDetailLoading triggered with", newValue);
+    this.state.detailLoading = newValue;
+  },
   setData(newValue) {
     if (this.debug) console.log("setData triggered with", newValue);
     this.state.data = newValue;
@@ -34,5 +40,9 @@ export default {
   setTimelineInit(newValue) {
     if (this.debug) console.log("setTimelineInit triggered with", newValue);
     this.state.timelineInit = newValue;
+  },
+  setDetail(newValue) {
+    if (this.debug) console.log("setDetail triggered with", newValue);
+    this.state.detail = newValue;
   }
 };

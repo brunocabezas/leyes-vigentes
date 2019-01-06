@@ -7,8 +7,9 @@
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
     "test": "jest",
-    "xml:file": "node ./scripts/XMLToJsonFile.js && node ./scripts/XMLToReducedJson.js",
-    "xml:separate": "node ./scripts/XMLToSeparateFiles.js && node ./scripts/XMLToReducedJson.js",
+    "xml:json": "node ./scripts/XMLToJsonFile.js",
+    "xml:lightjson": "node ./scripts/XMLToReducedJson.js",
+    "xml:separate": "node ./scripts/XMLToSeparateFiles.js",
     "test:e2e": "vue-cli-service test:e2e",
     "test:unit": "vue-cli-service test:unit"
   },

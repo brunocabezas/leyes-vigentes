@@ -23,33 +23,33 @@
 import store from '../../store';
 import ClipLoader from 'vue-spinner/src/ClipLoader.vue'
 
-  export default {
-    name: "list",
-    props: {
-      laws: Array,
-    },
-    components: {
-      'ClipLoader': ClipLoader
-    },
-    computed: {
-      activeItem: {
-        get: function() {
-          return store.state.activeLaw;
-        }
-      },
-      loading: {
-        get: function() {
-          return store.state.loading;
-        }
+export default {
+  name: "list",
+  props: {
+    laws: Array,
+  },
+  components: {
+    'ClipLoader': ClipLoader
+  },
+  computed: {
+    activeItem: {
+      get: function() {
+        return store.state.activeLaw;
       }
     },
-    methods: {
-      lawClick: function(e) {
-        const id = e.target.id;
-        store.setActiveLaw(id);
+    loading: {
+      get: function() {
+        return store.state.loading;
       }
     }
+  },
+  methods: {
+    lawClick: function(e) {
+      const id = e.target.id;
+      store.setActiveLaw(id);
+    }
   }
+}
 </script>
 <style lang="stylus" scoped>
 .loading-container
