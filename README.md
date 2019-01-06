@@ -6,23 +6,23 @@
 - [ ] Style the app!
 - [x] Mock API to test requests to api based on dates
 - [ ] Add more data attributes to laws
-- [ ] Fetch when dragging on Timeline
 - [ ] Different visualizations tabs to see current laws:
   - [ ] historic
     - [x] change current active law on click
     - [ ] get active law and style it
-    - [ ] Add info on hover at timeline items.
+    - [ ] Add info on hover at timeline items
+    - [ ] Fetch and change date when dragging
   - [ ] list: style the list
   - [ ] general statistics: add more statistics using new data
 - [ ] Filter laws by date, name, etc... (get filterable criteria)
 - [ ] Create law detail component
 - [x] Add data as a prop to app state
-- [ ] Define how to add help.
-- [x] Format date on date-range-picker.
-- [ ] Check date locales on picker and timeline.
-- [ ] Add components unit tests.
-- [ ] Pdf export feature.
-- [ ] Reflect some filter values on url.
+- [ ] Define how to add help
+- [x] Format date on date-range-picker
+- [ ] Check date locales on picker and timeline
+- [ ] Add components unit tests
+- [ ] Pdf export feature
+- [ ] Reflect some filter values on url
 - [ ] Add App loader (based on Header loading.)
 
 ## Project setup

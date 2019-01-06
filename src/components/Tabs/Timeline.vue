@@ -50,7 +50,15 @@ export default {
       get: function() {
         return {
           start: this.range.start,
-          end: this.range.end || new Date().toISOString()
+          end: this.range.end || new Date().toISOString(),
+          height: 400,
+          maxHeight: 400,
+          zoomMin: 3600000,
+          zoomMax: 9461000000000,
+          max: new Date(),
+          editable: {
+            updateTime: true
+          }
         };
       }
     }
