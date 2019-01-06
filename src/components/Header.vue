@@ -66,7 +66,7 @@ export default {
     .app-header-title
       flex 2
       text-align left
-      padding 1em
+      padding 0.5rem 0.5rem 1.5rem 0.5rem 
       margin 0
     .ctk-date-time-picker
       flex 1

@@ -1,31 +1,33 @@
 <template>
   <div id="app">
     <Header @changeRangePicker="fetchData($event)" :range="rangeToTimeline()" />
-    <Tabs>
-      <Tab name="List" :selected="true">
-        <List :laws="listData" :loading="loading"/>
-      </Tab>
-      <Tab name="Timeline">
-        <Timeline  :range="rangeToTimeline()"/>
-      </Tab>
-      <Tab name="Statistics">
-        <DayCounter />
-      </Tab>
-    </Tabs>
-    <Explorer />
+    <div class="app__content">
+      <Tabs>
+        <Tab name="List" :selected="true">
+          <List :laws="listData" :loading="loading"/>
+        </Tab>
+        <Tab name="Timeline">
+          <Timeline  :range="rangeToTimeline()"/>
+        </Tab>
+        <Tab name="Statistics">
+          <DayCounter />
+        </Tab>
+      </Tabs>
+      <Explorer />
+    </div>
   </div>
 </template>
 
 <script>
-import Timeline from "./components/Tabs/Timeline.vue";
-import DayCounter from "./components/Tabs/Statistics/DayCounter.vue";
 import Header from "./components/Header.vue";
 import Explorer from "./components/Explorer/Explorer.vue";
 import api, { mock } from "./api";
 import store from "./store";
-import Tabs from "./components/Tabs/Tabs.vue";
+import Tabs from "./components/common/Tabs.vue";
+import Tab from "./components/common/Tab.vue";
+import Timeline from "./components/Tabs/Timeline.vue";
 import List from "./components/Tabs/List.vue";
-import Tab from "./components/Tabs/Tab.vue";
+import DayCounter from "./components/Tabs/Statistics/DayCounter.vue";
 import laws from "../data/reduced.json";
 import { Range } from "./models";
 
@@ -103,5 +105,7 @@ html, body
   width 100%
   height 100%
   max-height 100%
+  .app__content
+    padding 0 1em
 
 </style>
