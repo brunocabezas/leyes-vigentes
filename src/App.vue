@@ -18,7 +18,7 @@
 
 <script>
 import Timeline from "./components/Tabs/Timeline.vue";
-import DayCounter from "./components/Tabs/DayCounter.vue";
+import DayCounter from "./components/Tabs/Statistics/DayCounter.vue";
 import Header from "./components/Header.vue";
 import Explorer from "./components/Explorer/Explorer.vue";
 import api, { mock } from "./api";

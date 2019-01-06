@@ -1,19 +1,21 @@
 <template id>
   <div class="wrapper"  style="width: 100%; height: 100%; border: 1px solid lightgrey">
-<vis-timeline
-  ref="timeline"
-  :options="options"
-  :groups="timeline.groups"
-  :items="timelineData"
-    :events="['changed']"
+  <vis-timeline
+    ref="timeline"
+    :options="options"
+    :groups="timeline.groups"
+    :items="data"
+    :events="['changed', 'click']"
     @changed="myChangedCallback($event)"
-    ></vis-timeline>
+    @click="handleClick($event)">
+  </vis-timeline>
   </div>
 </template>
 
 <script>
 import { Timeline as VisTimeline } from "vue2vis";
 import { Range } from "../../models";
+import store from "../../store";
 
 export default {
   name: "timeline",
@@ -27,26 +29,7 @@ export default {
             content: "Leyes"
           }
         ],
-        items: [
-          { id: 2, group: 0, content: "item 2", start: "2014-04-14" },
-          { id: 3, group: 0, content: "item 3", start: "2014-04-18" },
-          { id: 1, group: 0, content: "item 1", start: "2014-04-20" },
-          {
-            id: 4,
-            group: 0,
-            content: "item 4",
-            start: "2014-04-16",
-            end: "2014-04-19"
-          },
-          { id: 5, group: 0, content: "item 5", start: "2014-04-25" },
-          {
-            id: 6,
-            group: 0,
-            content: "item 6",
-            start: "2014-04-27",
-            type: "point"
-          }
-        ]
+        items: []
       }
     };
   },
@@ -55,7 +38,7 @@ export default {
   },
   props: { range: { type: Range } },
   computed: {
-    timelineData: function() {
+    data: function() {
       return this.$root.$data.store.data.map(r => ({
         id: parseInt(r.id, 10),
         content: "ley " + r.id,
@@ -67,8 +50,7 @@ export default {
       get: function() {
         return {
           start: this.range.start,
-          end: this.range.end || new Date().toISOString(),
-          editable: true
+          end: this.range.end || new Date().toISOString()
         };
       }
     }
@@ -94,6 +76,9 @@ export default {
         from: this.network.nodes[n1].id,
         to: this.network.nodes[n2].id
       });
+    },
+    handleClick(e) {
+      store.setActiveLaw(e.item);
     },
     myChangedCallback(e) {
       this.$emit("changeRangeTimeline", e);
