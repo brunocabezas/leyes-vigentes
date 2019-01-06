@@ -12,7 +12,9 @@
     - [ ] get active law and style it
     - [ ] Add info on hover at timeline items
     - [ ] Fetch and change date when dragging
-  - [ ] list: style the list
+  - [ ] list:
+    - [ ] add text filter
+    - [ ] display tags
   - [ ] general statistics: add more statistics using new data
 - [ ] Filter laws by date, name, etc... (get filterable criteria)
 - [ ] Create law detail component

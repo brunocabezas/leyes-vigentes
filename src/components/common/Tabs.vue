@@ -47,6 +47,7 @@ export default {
     height: 40px;
     display flex
     li
+      cursor pointer;
       color: #444444;
       height: 40px;
       flex: 1

@@ -48,7 +48,7 @@ export default {
   },
   data() {
     return {
-      loading: this.$root.$data.store.loading,
+      loading: store.state.loading,
       activeLaw: this.$root.$data.store.activeLaw
     };
   },

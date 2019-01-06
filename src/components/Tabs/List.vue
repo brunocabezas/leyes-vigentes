@@ -1,23 +1,45 @@
 <template>
-  <div class="list-of-laws__container">
+  <div v-if="loading" class="loading-container">
+
+<clip-loader :loading="loading" color="#47c9af" ></clip-loader>
+
+  </div>
+  <div v-else class="list-of-laws__container">
     <ul class="list-of-laws">
-      <li v-bind:class="{ 'list-of-laws__law--active': activeItem && activeItem==law.id }" v-on:click="lawClick" :id="law.id" :title="law.start" :key="law.id" class="list-of-laws__law" v-for="law in laws">{{law.title}} </li>
+      <li
+        v-bind:class="{ 'list-of-laws__law--active': activeItem && activeItem==law.id }"
+        v-on:click="lawClick"
+        :id="law.id"
+        :title="'Started on '+ law.start"
+        :key="law.id"
+        class="list-of-laws__law"
+        v-for="law in laws">
+        {{law.title}}
+      </li>
     </ul>
   </div>
 </template>
 <script lang="">
 import store from '../../store';
+import ClipLoader from 'vue-spinner/src/ClipLoader.vue'
 
   export default {
     name: "list",
     props: {
       laws: Array,
-      loading: Boolean
+    },
+    components: {
+      'ClipLoader': ClipLoader
     },
     computed: {
       activeItem: {
         get: function() {
           return store.state.activeLaw;
+        }
+      },
+      loading: {
+        get: function() {
+          return store.state.loading;
         }
       }
     },
@@ -30,6 +52,11 @@ import store from '../../store';
   }
 </script>
 <style lang="stylus" scoped>
+.loading-container
+  display flex
+  align-items center
+  justify-content center
+  height 300px
 .list-of-laws__container
   max-height 300px
   overflow-y auto
