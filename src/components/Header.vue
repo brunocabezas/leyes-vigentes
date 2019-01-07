@@ -1,7 +1,7 @@
 <template >
   <div class="app-header">
     <h1 class="app-header-title">Leyes Vigentes</h1>
-    <select @change="onTypeChange()" v-model="activeLawType">
+    <select v-model="activeLawType">
       <option v-for="item in lawTypes" :value="item.id" :key="item.id">
         {{ item.name }}
       </option>
@@ -11,12 +11,14 @@
       v-bind:max-date="now"
       v-bind:disabled="loading"
       locale="es"
-      v-on:input="onRangeChange($event)"
       formatted="ddd D MMM YYYY"
       auto-close
+      overlay-background
+      :label="label"
       v-model="dateRange"
       range-mode
     />
+    <button v-if="dateRange.start && dateRange.end" @click="clearRange()" name="button">x</button>
   </div>
 </template>
 <script >
@@ -30,9 +32,7 @@ Vue.component("vue-ctk-date-time-picker", VueCtkDateTimePicker);
 export default {
   name: "Header",
   data() {
-    return {
-      activeLawType: store.state.filters.type
-    };
+    return {};
   },
   computed: {
     dateRange: {
@@ -41,11 +41,24 @@ export default {
         return this.range;
       }
     },
+    activeLawType: {
+      get: function() {
+        return this.$root.$data.store.filters.type;
+      },
+      set: function(lawId) {
+        return store.setType(lawId);
+      }
+    },
     lawTypes: function() {
       return [
         { name: " Please Select One", id: null },
         ...this.$root.$data.store.lawTypes
       ];
+    },
+    label: {
+      get: function() {
+        return "Choose a range";
+      }
     },
     loading: function() {
       return this.$root.$data.store.loading;
@@ -58,13 +71,21 @@ export default {
       return new Date("01-01-1818").toISOString();
     }
   },
-  props: { range: { type: Range } },
+  props: {
+    range: {
+      type: Range,
+      required: true,
+      validator: prop => {
+        return (
+          (typeof prop.start === "string" || prop.start === null) &&
+          (typeof prop.end === "string" || prop.end === null)
+        );
+      }
+    }
+  },
   methods: {
-    onTypeChange(a) {
-      this.$parent.fetchData(this.dateRange);
-    },
-    onRangeChange(a) {
-      this.$parent.fetchData(a);
+    clearRange() {
+      return store.setDateRange({ start: null, end: null });
     }
   }
 };

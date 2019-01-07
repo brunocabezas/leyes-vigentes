@@ -43,7 +43,7 @@ export default {
   },
   data() {
     return {
-      loading: store.state.loading,
+      loading: this.$root.$data.store.loading,
       activeLaw: this.$root.$data.store.activeLaw
     };
   },
@@ -57,12 +57,32 @@ export default {
           start: r.date
         }));
       }
+    },
+    lawTypeId: {
+      get: function() {
+        return this.$root.$data.store.filters.type;
+      }
+    },
+    dateRange: {
+      get: function() {
+        return this.$root.$data.store.filters.dateRange;
+      }
     }
   },
   mounted: function() {
     // First call of fecthData is made from Header
     // this.fetchData({ start: new Date(), end: new Date() });
     this.fetchLawTypes();
+  },
+  watch: {
+    dateRange: function(newVal, old) {
+      this.fetchData({ dateRange: newVal });
+    },
+    lawTypeId: function(newVal, old) {
+      const law = this.$root.$data.store.lawTypes.find(l => l.id === newVal);
+      this.fetchData({ lawType: law });
+      console.log("lawTypeId change", law);
+    }
   },
   methods: {
     rangeToTimeline: function() {
@@ -72,9 +92,18 @@ export default {
       );
       return range;
     },
-    fetchData: function(data) {
-      if (!data.start || !data.end) return console.error("error fetching data");
-      console.log("fetchData");
+    fetchData: function(p = { dateRange: {} }) {
+      const lawTypeFromStore = this.$root.$data.store.lawTypes.find(
+        l => l.id === this.lawTypeId
+      );
+      const params = {
+        from: (p.dateRange && p.dateRange.start) || this.dateRange.start,
+        to: (p.dateRange && p.dateRange.end) || this.dateRange.end,
+        lawType:
+          (p.lawType && p.lawType.name) ||
+          (lawTypeFromStore && lawTypeFromStore.name)
+      };
+      console.log("fetchData with params: ", params);
       store.setLoading(true);
       return api
         .get("/data")
