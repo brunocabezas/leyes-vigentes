@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <Header @changeRangePicker="fetchData($event)" :range="rangeToTimeline()" />
+    <Header :range="rangeToTimeline()" />
     <div class="app__content">
       <Tabs>
         <Tab name="List" :selected="true">
@@ -28,14 +28,7 @@ import Tab from "./components/common/Tab.vue";
 import Timeline from "./components/Tabs/Timeline.vue";
 import List from "./components/Tabs/List.vue";
 import DayCounter from "./components/Tabs/Statistics/DayCounter.vue";
-import laws from "../data/reduced.json";
-import detailedLaws from "../data/leyes3.json";
 import { Range } from "./models";
-
-// Mock any GET request to /users
-// arguments for reply are (status, data, headers)
-mock.onGet("/data").reply(200, { data: laws });
-mock.onGet("/detail").reply(200, { data: detailedLaws });
 
 export default {
   name: "app",
@@ -66,6 +59,11 @@ export default {
       }
     }
   },
+  mounted: function() {
+    // First call of fecthData is made from Header
+    // this.fetchData({ start: new Date(), end: new Date() });
+    this.fetchLawTypes();
+  },
   methods: {
     rangeToTimeline: function() {
       const range = new Range(
@@ -77,12 +75,20 @@ export default {
     fetchData: function(data) {
       if (!data.start || !data.end) return console.error("error fetching data");
 
-      // console.log("fetchData", data.start, data.end, data);
       store.setLoading(true);
       return api
         .get("/data")
         .then(r => {
           store.setData(r.data.data);
+        })
+        .finally(() => store.setLoading(false));
+    },
+    fetchLawTypes: function() {
+      store.setLoading(true);
+      return api
+        .get("/law_types")
+        .then(r => {
+          store.setLawTypes(r.data.data);
         })
         .finally(() => store.setLoading(false));
     }

@@ -11,6 +11,7 @@ export default {
       end: new Date().toLocaleDateString()
     },
     data: [],
+    lawTypes: [],
     detail: null,
     // Boolean to see if vis.js timeline component is already initialized
     timelineInit: false,
@@ -44,5 +45,9 @@ export default {
   setDetail(newValue) {
     if (this.debug) console.log("setDetail triggered with", newValue);
     this.state.detail = newValue;
+  },
+  setLawTypes(newValue) {
+    if (this.debug) console.log("setLawTypes triggered with", newValue);
+    this.state.lawTypes = newValue;
   }
 };

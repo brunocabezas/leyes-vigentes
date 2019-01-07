@@ -37,6 +37,9 @@ export default {
         return this.range;
       }
     },
+    lawTypes: function() {
+      return this.$root.$data.store.lawTypes;
+    },
     loading: function() {
       return this.$root.$data.store.loading;
     },
@@ -51,7 +54,7 @@ export default {
   props: { range: { type: Range } },
   methods: {
     changeRange(a) {
-      this.$emit("changeRangePicker", a);
+      this.$parent.fetchData(a);
     }
   }
 };
@@ -66,7 +69,7 @@ export default {
     .app-header-title
       flex 2
       text-align left
-      padding 0.5rem 0.5rem 1.5rem 0.5rem 
+      padding 0.5rem 0.5rem 1.5rem 0.5rem
       margin 0
     .ctk-date-time-picker
       flex 1
