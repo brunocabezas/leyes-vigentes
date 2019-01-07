@@ -6,21 +6,26 @@
 - [ ] Style the app!
 - [x] Mock API to test requests to api based on dates
 - [ ] Add more data attributes to laws
-- [ ] Fetch when dragging on Timeline
 - [ ] Different visualizations tabs to see current laws:
-  - [ ] historic: get active law and style it, change current active law on click
-  - [ ] list: style the list
+  - [ ] historic
+    - [x] change current active law on click
+    - [x] get active law and style it
+    - [ ] Add info on hover at timeline items
+    - [ ] Fetch and change date when dragging
+  - [ ] list:
+    - [ ] add text filter
+    - [ ] display tags
   - [ ] general statistics: add more statistics using new data
-- [ ] Filter laws by date, name, etc... (get filterable criterias)
-- [ ] Create law detail component
+- [ ] Filter laws by date, name, etc... (get filterable criteria)
+- [x} Create law detail component
 - [x] Add data as a prop to app state
-- [ ] Define how to add help.
-- [x] Format date on date-range-picker.
-- [ ] Check date locales on picker and timeline.
-- [ ] Add components unit tests.
-- [ ] Pdf export feature.
-- [ ] Reflect some filter values on url.
-- [ ] Add App loader (based on Header loading.)
+- [ ] Define how to add help
+- [x] Format date on date-range-picker
+- [ ] Check date locales on picker and timeline
+- [ ] Add components unit tests
+- [ ] Pdf export feature
+- [ ] Reflect some filter values on url
+- [x] Add App loader (based on Header loading.)
 
 ## Project setup
 
@@ -29,6 +34,23 @@ yarn install
 ```
 
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+### XML Parsing
+
+Currently, some _npm_ tasks are defined to parse xml data for consuming:
+
+```javascript
+// creates json file holding laws and all its data
+yarn run xml:file
+
+// creates a reduced.json file used to list and populate main viewports
+yarn run xml:lightjson
+
+// creates separate json files for each law, using id as name (e.g. 123.json)
+yarn run xml:separate
+```
+
+All these task rely on files from `data/`.
 
 ## Development
 

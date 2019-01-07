@@ -1,53 +1,32 @@
 <template id>
-  <div class="wrapper"  style="width: 100%; height: 100%; border: 1px solid lightgrey">
-<vis-timeline
-  ref="timeline"
-  :options="options"
-  :groups="timeline.groups"
-  :items="timelineData"
-    :events="['changed']"
-    @changed="myChangedCallback($event)"
-    ></vis-timeline>
+  <div class="wrapper">
+    <vis-timeline
+      ref="timeline"
+      :options="options"
+      :groups="timelineGroups"
+      :items="data"
+      :events="['changed', 'click']"
+      @changed="myChangedCallback($event)"
+      @click="handleClick($event)">
+    </vis-timeline>
   </div>
 </template>
 
 <script>
 import { Timeline as VisTimeline } from "vue2vis";
 import { Range } from "../../models";
+import store from "../../store";
+
+const group = {
+  id: 0,
+  content: "Leyes"
+};
 
 export default {
   name: "timeline",
   data: function() {
     return {
-      timelineEvents: "",
-      timeline: {
-        groups: [
-          {
-            id: 0,
-            content: "Leyes"
-          }
-        ],
-        items: [
-          { id: 2, group: 0, content: "item 2", start: "2014-04-14" },
-          { id: 3, group: 0, content: "item 3", start: "2014-04-18" },
-          { id: 1, group: 0, content: "item 1", start: "2014-04-20" },
-          {
-            id: 4,
-            group: 0,
-            content: "item 4",
-            start: "2014-04-16",
-            end: "2014-04-19"
-          },
-          { id: 5, group: 0, content: "item 5", start: "2014-04-25" },
-          {
-            id: 6,
-            group: 0,
-            content: "item 6",
-            start: "2014-04-27",
-            type: "point"
-          }
-        ]
-      }
+      timelineGroups: [group]
     };
   },
   components: {
@@ -55,23 +34,71 @@ export default {
   },
   props: { range: { type: Range } },
   computed: {
-    timelineData: function() {
-      return this.$root.$data.store.data.map(r => ({
-        id: parseInt(r.id, 10),
-        content: "ley " + r.id,
-        group: 0,
-        start: r.date
-      }));
+    data: {
+      get: function() {
+        return this.$root.$data.store.data.map(r => ({
+          id: parseInt(r.id, 10),
+          content: "ley " + r.id,
+          group: 0,
+          start: r.date
+        }));
+      }
     },
     options: {
       get: function() {
         return {
           start: this.range.start,
           end: this.range.end || new Date().toISOString(),
-          editable: true
+          height: 300,
+          width: "100%",
+          maxHeight: 300,
+          zoomMin: 3600000,
+          zoomMax: 9461000000000,
+          max: new Date(),
+          onInitialDrawComplete: function() {
+            store.setTimelineInit(true);
+          },
+          editable: {
+            updateTime: true
+          }
         };
       }
     }
+  },
+  mounted() {
+    this.$watch(
+      function() {
+        return this.$root.$data.store.activeLaw;
+      },
+      (newVal, oldVal) => {
+        const timeline = this.$refs.timeline;
+        let selection = [];
+        if (timeline && newVal) {
+          // console.log(timeline);
+          // console.log("setting focus on ", newVal);
+          selection = [parseInt(newVal, 10)];
+        }
+        if (this.$root.$data.store.timelineInit) {
+          timeline.setSelection(selection, { focus: true });
+        }
+      }
+    );
+    this.$watch(
+      function() {
+        return this.$root.$data.store.timelineInit;
+      },
+      (newVal, oldVal) => {
+        const timeline = this.$refs.timeline;
+        let selection = [];
+        if (timeline && newVal) {
+          // console.log(timeline);
+          // console.log("setting focus on ", newVal);
+          selection = [parseInt(newVal, 10)];
+        }
+        if (timeline && newVal)
+          timeline.setSelection(selection, { focus: true });
+      }
+    );
   },
   methods: {
     timelineEvent(eventName) {
@@ -95,6 +122,9 @@ export default {
         to: this.network.nodes[n2].id
       });
     },
+    handleClick(e) {
+      store.setActiveLaw(e.item);
+    },
     myChangedCallback(e) {
       this.$emit("changeRangeTimeline", e);
     }
@@ -104,8 +134,11 @@ export default {
 
 <style lang="stylus" scoped>
 .wrapper
-  padding: 20px 50px;
+  padding: 20px 0px;
   text-align: center;
+  max-width: 100%;
+  height: 300px;
+  box-sizing: content-box;
 
 .events
   text-align: left;

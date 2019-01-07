@@ -1,66 +1,62 @@
 <template>
-  <div class="list-of-laws__container">
+  <div v-if="loading" class="loading-container">
+
+<clip-loader :loading="loading" color="#47c9af" ></clip-loader>
+
+  </div>
+  <div v-else class="list-of-laws__container">
     <ul class="list-of-laws">
-      <li v-on:click="lawClick" :id="law.id" :key="law.id" class="list-of-laws__law" v-for="law in timelineData">{{law.title}} </li>
+      <li
+        v-bind:class="{ 'list-of-laws__law--active': activeItem && activeItem==law.id }"
+        v-on:click="lawClick"
+        :id="law.id"
+        :title="'Started on '+ law.start"
+        :key="law.id"
+        class="list-of-laws__law"
+        v-for="law in laws">
+        {{law.title}}
+      </li>
     </ul>
   </div>
 </template>
 <script lang="">
 import store from '../../store';
+import ClipLoader from 'vue-spinner/src/ClipLoader.vue'
 
-  export default {
-    name: "list",
-    // Options / Data
-    props: {
-      laws: Array
-    },
-    computed: {
-      timelineData: function() {
-        console.log(this.$root.$data.store, this.$root.$data.store.data);
-        return this.$root.$data.store.data.map(r => ({
-          ...r,
-          id: parseInt(r.id, 10),
-          title: "ley " + r.id,
-          start: r.date
-        }));
-      },
-    },
-    methods: {
-      lawClick: function(e) {
-        const id = e.target.id;
-        store.setActiveLaw(id);
+export default {
+  name: "list",
+  props: {
+    laws: Array,
+  },
+  components: {
+    'ClipLoader': ClipLoader
+  },
+  computed: {
+    activeItem: {
+      get: function() {
+        return store.state.activeLaw;
       }
-    }// ,
-    // watch: {},
-    // Options / DOM
-    // el () {},
-    // replace: true,
-    // template: '',
-    // Options / Lifecycle Hooks
-    // init () {},
-    // crated () {},
-    // beforeCompile () {},
-    // compiled () {},
-    // ready () {},
-    // attached () {},
-    // detached () {},
-    // beforeDestroy () {},
-    // destroyed () {},
-    // Options / Assets
-    // directives: {},
-    // elementDirectives: {},
-    // filters: {},
-    // components: {},
-    // transitions: {},
-    // partials: {},
-    // Options / Misc
-    // parent: null,
-    // events: {},
-    // mixins: [],
-    // name: ''
+    },
+    loading: {
+      get: function() {
+        return store.state.loading;
+      }
+    }
+  },
+  methods: {
+    lawClick: function(e) {
+      const id = e.target.id;
+      store.setActiveLaw(id);
+    }
   }
+}
 </script>
 <style lang="stylus" scoped>
+.loading-container
+  display flex
+  align-items center
+  justify-content center
+  height 300px
 .list-of-laws__container
   max-height 300px
   overflow-y auto
@@ -73,9 +69,13 @@ import store from '../../store';
 .list-of-laws__law
   transition background-color 0.3s
   text-align left
-  padding 1em
+  padding 0.5em
+
   &:hover
-  background-color gray
+    background-color gray
     cursor pointer
     opacity 0.7
+
+  &--active
+    background-color gray
 </style>
