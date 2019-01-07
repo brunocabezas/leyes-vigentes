@@ -49,8 +49,9 @@ export default {
         return {
           start: this.range.start,
           end: this.range.end || new Date().toISOString(),
-          height: 400,
-          maxHeight: 400,
+          height: 300,
+          width: "100%",
+          maxHeight: 300,
           zoomMin: 3600000,
           zoomMax: 9461000000000,
           max: new Date(),
@@ -73,14 +74,10 @@ export default {
         const timeline = this.$refs.timeline;
         let selection = [];
         if (timeline && newVal) {
-          console.log(timeline);
-          console.log("setting focus on ", newVal);
+          // console.log(timeline);
+          // console.log("setting focus on ", newVal);
           selection = [parseInt(newVal, 10)];
         }
-        console.log(
-          this.$root.$data.store.timelineInit,
-          store.state.timelineInit
-        );
         if (this.$root.$data.store.timelineInit) {
           timeline.setSelection(selection, { focus: true });
         }
@@ -94,8 +91,8 @@ export default {
         const timeline = this.$refs.timeline;
         let selection = [];
         if (timeline && newVal) {
-          console.log(timeline);
-          console.log("setting focus on ", newVal);
+          // console.log(timeline);
+          // console.log("setting focus on ", newVal);
           selection = [parseInt(newVal, 10)];
         }
         if (timeline && newVal)
@@ -137,12 +134,11 @@ export default {
 
 <style lang="stylus" scoped>
 .wrapper
-  padding: 20px 50px;
+  padding: 20px 0px;
   text-align: center;
-  width: 100%;
-  height: 400px;
+  max-width: 100%;
+  height: 300px;
   box-sizing: content-box;
-  border: 1px solid lightgrey;
 
 .events
   text-align: left;

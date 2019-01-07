@@ -97,6 +97,9 @@ export default {
 html, body
   max-height 100%
   height 100%
+  margin 0
+body
+  padding 10px
 #app
   font-family "Avenir", Helvetica, Arial, sans-serif
   -webkit-font-smoothing antialiased

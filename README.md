@@ -35,6 +35,23 @@ yarn install
 
 See [Configuration Reference](https://cli.vuejs.org/config/).
 
+### XML Parsing
+
+Currently, some _npm_ tasks are defined to parse xml data for consuming:
+
+```javascript
+// creates json file holding laws and all its data
+yarn run xml:file
+
+// creates a reduced.json file used to list and populate main viewports
+yarn run xml:lightjson
+
+// creates separate json files for each law, using id as name (e.g. 123.json)
+yarn run xml:separate
+```
+
+All these task rely on files from `data/`.
+
 ## Development
 
 #### Compiles and hot-reloads for development

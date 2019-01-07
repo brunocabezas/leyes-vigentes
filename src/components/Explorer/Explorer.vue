@@ -6,6 +6,14 @@
           <h3>Nº {{detail.$.idNorma}}, {{detail.TituloNorma[0]}} </h3>
           <p>Publicada en {{detail.$.fechaPublicacion}}</p>
           <p>{{detail.$.tipoNorma}} | {{detail.Organismo[0]}}</p>
+          <p>
+            <a :href="'https://www.leychile.cl/Navegar?idNorma='+detail.$.idNorma" target="_blank">
+              detalles
+            </a>
+            <span v-if="detail.HistoriaDeLaLey[0].length>0 ">
+              | <a :href="detail.HistoriaDeLaLey[0]">historia</a>
+            </span>
+          </p>
       </div>
     </div>
 
@@ -56,9 +64,7 @@ export default {
     }
   },
   watch: {
-    // watch changes here
     activeLaw: function(newValue, oldValue) {
-      // apply your logic here, e.g. invoke your listener function
       this.fetchDetail(newValue.id);
     }
   },
@@ -73,7 +79,6 @@ export default {
           const laws = r.data.data[0].Normas.Norma;
           const detail = laws.find(l => l.$.idNorma == id);
           if (detail.$.idNorma) store.setDetail(detail);
-          console.log(detail, id);
         })
         .finally(() => store.setDetailLoading(false));
     }
