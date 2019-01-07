@@ -15,7 +15,7 @@ export default {
       get: function() {
         const {
           dateRange: { start, end }
-        } = this.$root.$data.store;
+        } = this.$root.$data.store.filters;
         if (!start || !end) return "-";
         var date1 = new Date(start);
         var date2 = new Date(end);

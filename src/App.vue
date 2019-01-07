@@ -21,7 +21,7 @@
 <script>
 import Header from "./components/Header.vue";
 import Explorer from "./components/Explorer/Explorer.vue";
-import api, { mock } from "./api";
+import api from "./api";
 import store from "./store";
 import Tabs from "./components/common/Tabs.vue";
 import Tab from "./components/common/Tab.vue";
@@ -67,14 +67,14 @@ export default {
   methods: {
     rangeToTimeline: function() {
       const range = new Range(
-        this.$root.$data.store.dateRange.start,
-        this.$root.$data.store.dateRange.end
+        this.$root.$data.store.filters.dateRange.start,
+        this.$root.$data.store.filters.dateRange.end
       );
       return range;
     },
     fetchData: function(data) {
       if (!data.start || !data.end) return console.error("error fetching data");
-
+      console.log("fetchData");
       store.setLoading(true);
       return api
         .get("/data")
@@ -84,6 +84,7 @@ export default {
         .finally(() => store.setLoading(false));
     },
     fetchLawTypes: function() {
+      console.log("fetchLawTypes");
       store.setLoading(true);
       return api
         .get("/law_types")

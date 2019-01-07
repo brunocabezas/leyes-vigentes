@@ -6,9 +6,12 @@ export default {
   state: {
     loading: false, // loader indicator for dataº
     detailLoading: false,
-    dateRange: {
-      start: date3MonthsAgo.toLocaleDateString(),
-      end: new Date().toLocaleDateString()
+    filters: {
+      dateRange: {
+        start: date3MonthsAgo.toLocaleDateString(),
+        end: new Date().toLocaleDateString()
+      },
+      type: null
     },
     data: [],
     lawTypes: [],
@@ -20,7 +23,11 @@ export default {
   },
   setDateRange(newValue) {
     if (this.debug) console.log("setDateRange triggered with", newValue);
-    this.state.dateRange = newValue;
+    this.state.filters.dateRange = newValue;
+  },
+  setType(newValue) {
+    if (this.debug) console.log("setType triggered with", newValue);
+    this.state.filters.type = newValue;
   },
   setLoading(newValue) {
     if (this.debug) console.log("setLoading triggered with", newValue);

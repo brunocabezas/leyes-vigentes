@@ -5,7 +5,12 @@
 - [x] Close date-range-picker when choosing last newValue
 - [ ] Style the app!
 - [x] Mock API to test requests to api based on dates
-- [ ] Add more data attributes to laws
+- [x] Add more data attributes to laws
+- [ ] Top Filter section
+  - [ ] Range picker must be nullable
+  - [x] Add law types select
+  - [ ] Reflect some filter values on url
+  - [ ] Read from url
 - [ ] Different visualizations tabs to see current laws:
   - [ ] historic
     - [x] change current active law on click
@@ -15,16 +20,18 @@
   - [ ] list:
     - [ ] add text filter
     - [ ] display tags
-  - [ ] general statistics: add more statistics using new data
-- [ ] Filter laws by date, name, etc... (get filterable criteria)
-- [x} Create law detail component
+    - [ ] show type as label and make it clickable
+  - [ ] general statistics
+    - [ ] add more statistics
+    - [ ] show always general statistics
+    - [ ] react to filters
+    - [ ] Pdf export feature
+- [x] Create law detail component
 - [x] Add data as a prop to app state
 - [ ] Define how to add help
 - [x] Format date on date-range-picker
 - [ ] Check date locales on picker and timeline
 - [ ] Add components unit tests
-- [ ] Pdf export feature
-- [ ] Reflect some filter values on url
 - [x] Add App loader (based on Header loading.)
 
 ## Project setup
