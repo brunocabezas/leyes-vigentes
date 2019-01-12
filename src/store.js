@@ -6,11 +6,15 @@ export default {
   state: {
     loading: false, // loader indicator for dataº
     detailLoading: false,
-    dateRange: {
-      start: date3MonthsAgo.toLocaleDateString(),
-      end: new Date().toLocaleDateString()
+    filters: {
+      dateRange: {
+        start: date3MonthsAgo.toLocaleDateString(),
+        end: new Date().toLocaleDateString()
+      },
+      type: null
     },
     data: [],
+    lawTypes: [],
     detail: null,
     // Boolean to see if vis.js timeline component is already initialized
     timelineInit: false,
@@ -19,7 +23,11 @@ export default {
   },
   setDateRange(newValue) {
     if (this.debug) console.log("setDateRange triggered with", newValue);
-    this.state.dateRange = newValue;
+    this.state.filters.dateRange = newValue;
+  },
+  setType(newValue) {
+    if (this.debug) console.log("setType triggered with", newValue);
+    this.state.filters.type = newValue;
   },
   setLoading(newValue) {
     if (this.debug) console.log("setLoading triggered with", newValue);
@@ -44,5 +52,9 @@ export default {
   setDetail(newValue) {
     if (this.debug) console.log("setDetail triggered with", newValue);
     this.state.detail = newValue;
+  },
+  setLawTypes(newValue) {
+    if (this.debug) console.log("setLawTypes triggered with", newValue);
+    this.state.lawTypes = newValue;
   }
 };
