@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="list-of-laws__container">
     <div v-if="loading" class="loading-container">
       <clip-loader :loading="loading" color="#47c9af"></clip-loader>
     </div>
@@ -64,25 +64,25 @@ export default {
   align-items center
   justify-content center
   height 300px
+
 .list-of-laws__container
-  max-height 300px
-  overflow-y auto
+  border: 1px solid #ddd;
 
 .list-of-laws
   list-style-type none
-  padding 0
   margin 0
 
 .list-of-laws__law
   transition background-color 0.3s
   text-align left
   padding 0.5em
+  border-bottom 1px solid #eee
 
   &:hover
-    background-color gray
+    background-color #eee
     cursor pointer
     opacity 0.7
 
   &--active
-    background-color gray
+    background-color #eee
 </style>

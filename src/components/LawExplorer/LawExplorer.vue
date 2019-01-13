@@ -5,7 +5,10 @@
       <div v-if="!loading && detail.idNorma" class="item">
         <h3>Nº {{ detail.idNorma }}, {{ detail.TituloNorma }}</h3>
         <p>Publicada en {{ detail.fechaPublicacion }}</p>
-        <p>{{ detail.tipoNorma }} | {{ detail.Organismo }}</p>
+        <div>
+          <tag field="department" :value="detail.Organismo"></tag> |
+          <tag field="type" :value="detail.tipoNorma"></tag>
+        </div>
         <p>
           <a
             :href="'https://www.leychile.cl/Navegar?idNorma=' + detail.idNorma"
@@ -28,6 +31,7 @@ import ClipLoader from "vue-spinner/src/ClipLoader.vue";
 import { Law, LawDetail } from "../../models";
 import store from "../../store";
 import api from "../../api";
+import Tag from "../Base/BaseTag.vue";
 
 export default {
   name: "LawExplorer",
@@ -36,7 +40,8 @@ export default {
   },
   props: [],
   components: {
-    ClipLoader: ClipLoader
+    ClipLoader: ClipLoader,
+    tag: Tag
   },
   computed: {
     detail: {

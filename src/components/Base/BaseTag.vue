@@ -56,6 +56,7 @@ export default {
   font-size 14
   text-transform: lowercase;
   padding 3px
+  cursor pointer
   &:hover
     color black
     background-color: white;
