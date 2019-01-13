@@ -17,6 +17,7 @@ export default {
       type: null
     },
     data: [],
+    lawTypes: [],
     detail,
     // Boolean to see if vis.js timeline component is already initialized
     timelineInit: false,
