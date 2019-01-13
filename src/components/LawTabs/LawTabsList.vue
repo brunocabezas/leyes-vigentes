@@ -1,26 +1,27 @@
 <template>
-  <div v-if="loading" class="loading-container">
-    <clip-loader :loading="loading" color="#47c9af"></clip-loader>
-  </div>
-  <div v-else class="list-of-laws__container">
-    <ul class="list-of-laws">
+  <div>
+    <div v-if="loading" class="loading-container">
+      <clip-loader :loading="loading" color="#47c9af"></clip-loader>
+    </div>
+    <virtual-list :size="40" :remain="8">
       <li
         v-bind:class="{
-          'list-of-laws__law--active': activeItem && activeItem == law.id
+          'list-of-laws__law--active': activeItem && activeItem == law.idNorma
         }"
         v-on:click="lawClick"
-        :id="law.id"
+        :id="law.idNorma"
         :title="'Started on ' + law.start"
-        :key="law.id"
         class="list-of-laws__law"
-        v-for="law in laws"
+        v-for="(law, index) of laws"
+        :key="index"
       >
-        {{ law.title }}
+        ley Nº{{ law.numeroNorma }} - {{ law.Organismo }} - {{ law.tipoNorma }}
       </li>
-    </ul>
+    </virtual-list>
   </div>
 </template>
 <script lang="">
+import virtualList from "vue-virtual-scroll-list";
 import store from "../../store";
 import ClipLoader from "vue-spinner/src/ClipLoader.vue";
 
@@ -30,7 +31,8 @@ export default {
     laws: Array
   },
   components: {
-    ClipLoader: ClipLoader
+    ClipLoader: ClipLoader,
+    "virtual-list": virtualList
   },
   computed: {
     activeItem: {

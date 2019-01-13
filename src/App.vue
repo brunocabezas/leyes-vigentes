@@ -104,7 +104,7 @@ export default {
       console.log("fetchData with params: ", params);
       store.setLoading(true);
       return api
-        .get("/data")
+        .get("/all_laws")
         .then(r => {
           store.setData(r.data.data);
         })

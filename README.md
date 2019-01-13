@@ -13,6 +13,7 @@
   - [ ] Reflect some filter values on url
   - [ ] Add number of results input
   - [ ] Read tabs from url
+  - [ ] Add organisms select
 - [ ] Different visualizations tabs to see current laws:
   - [ ] historic
     - [x] change current active law on click
