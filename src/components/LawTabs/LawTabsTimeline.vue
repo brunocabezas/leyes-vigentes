@@ -37,11 +37,11 @@ export default {
   computed: {
     data: {
       get: function() {
-        return this.$root.$data.store.data.map(r => ({
-          id: parseInt(r.id, 10),
-          content: "ley " + r.id,
+        return store.state.data.map(r => ({
+          id: parseInt(r.idNorma, 10),
+          content: "ley " + r.idNorma,
           group: 0,
-          start: r.date
+          start: r.fechaPublicacion
         }));
       }
     },
@@ -56,9 +56,7 @@ export default {
           zoomMin: 3600000,
           zoomMax: 9461000000000,
           max: new Date(),
-          onInitialDrawComplete: function() {
-            store.setTimelineInit(true);
-          },
+
           editable: {
             updateTime: true
           }

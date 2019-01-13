@@ -34,7 +34,8 @@ const toFile = (file = "../leyesBIG2.xml", output = "../data/leyes4.json") => {
       // console.log(result.content, result.content.encodeHTML());
       const file = parser.parse(result.content.encodeHTML(), {
         ignoreAttributes: false,
-        attributeNamePrefix: ""
+        attributeNamePrefix: "",
+        parseAttributeValue: true
       });
       fs.writeFile(writePath, JSON.stringify(file), writeError => {
         if (writeError) throw writeError;

@@ -1,27 +1,31 @@
 <template>
-  <div v-if="loading" class="loading-container">
-    <clip-loader :loading="loading" color="#47c9af"></clip-loader>
-  </div>
-  <div v-else class="list-of-laws__container">
-    <ul class="list-of-laws">
+  <div class="list-of-laws__container">
+    <div v-if="loading" class="loading-container">
+      <clip-loader :loading="loading" color="#47c9af"></clip-loader>
+    </div>
+    <virtual-list class="list-of-laws" :size="40" :remain="8">
       <li
         v-bind:class="{
-          'list-of-laws__law--active': activeItem && activeItem == law.id
+          'list-of-laws__law--active': activeItem && activeItem == law.idNorma
         }"
         v-on:click="lawClick"
-        :id="law.id"
-        :title="'Started on ' + law.start"
-        :key="law.id"
+        :id="law.idNorma"
+        :title="'Started on ' + law.fechaPublicacion"
         class="list-of-laws__law"
-        v-for="law in laws"
+        v-for="(law, index) of laws"
+        :key="index"
       >
-        {{ law.title }}
+        ley Nº {{ law.numeroNorma }} -
+        <tag field="department" :value="law.Organismo"></tag>
+        <tag field="type" :value="law.tipoNorma"></tag>
       </li>
-    </ul>
+    </virtual-list>
   </div>
 </template>
 <script lang="">
+import virtualList from "vue-virtual-scroll-list";
 import store from "../../store";
+import Tag from "../Base/BaseTag.vue";
 import ClipLoader from "vue-spinner/src/ClipLoader.vue";
 
 export default {
@@ -30,7 +34,9 @@ export default {
     laws: Array
   },
   components: {
-    ClipLoader: ClipLoader
+    ClipLoader: ClipLoader,
+    tag: Tag,
+    "virtual-list": virtualList
   },
   computed: {
     activeItem: {
@@ -58,25 +64,25 @@ export default {
   align-items center
   justify-content center
   height 300px
+
 .list-of-laws__container
-  max-height 300px
-  overflow-y auto
+  border: 1px solid #ddd;
 
 .list-of-laws
   list-style-type none
-  padding 0
   margin 0
 
 .list-of-laws__law
   transition background-color 0.3s
   text-align left
   padding 0.5em
+  border-bottom 1px solid #eee
 
   &:hover
-    background-color gray
+    background-color #eee
     cursor pointer
     opacity 0.7
 
   &--active
-    background-color gray
+    background-color #eee
 </style>

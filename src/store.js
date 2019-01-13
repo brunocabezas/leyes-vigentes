@@ -5,7 +5,7 @@ const detail = new LawDetail();
 var date3MonthsAgo = new Date();
 date3MonthsAgo.setMonth(date3MonthsAgo.getMonth() - 3);
 export default {
-  debug: true,
+  debug: false,
   state: {
     loading: false, // loader indicator for dataº
     detailLoading: false,
