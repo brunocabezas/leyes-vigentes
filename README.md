@@ -5,7 +5,14 @@
 - [x] Close date-range-picker when choosing last newValue
 - [ ] Style the app!
 - [x] Mock API to test requests to api based on dates
-- [ ] Add more data attributes to laws
+- [x] Add more data attributes to laws
+- [ ] Top Filter section
+  - [ ] Range picker must be nullable
+  - [ ] Pagination and number of laws?
+  - [x] Add law types select
+  - [ ] Reflect some filter values on url
+  - [ ] Add number of results input
+  - [ ] Read tabs from url
 - [ ] Different visualizations tabs to see current laws:
   - [ ] historic
     - [x] change current active law on click
@@ -15,9 +22,13 @@
   - [ ] list:
     - [ ] add text filter
     - [ ] display tags
-  - [ ] general statistics: add more statistics using new data
-- [ ] Filter laws by date, name, etc... (get filterable criteria)
-- [x} Create law detail component
+    - [ ] show type as label and make it clickable
+  - [ ] general statistics
+    - [ ] more stats (Nº of laws, Nº days of period, Average promulgation gap, graph of types per law,)
+    - [ ] show always general statistics
+    - [ ] react to filters
+    - [ ] Pdf export feature
+- [x] Create law detail component
 - [x] Add data as a prop to app state
 - [ ] Define how to add help
 - [x] Format date on date-range-picker
