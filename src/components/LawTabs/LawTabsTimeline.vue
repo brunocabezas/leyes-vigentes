@@ -56,9 +56,7 @@ export default {
           zoomMin: 3600000,
           zoomMax: 9461000000000,
           max: new Date(),
-          onInitialDrawComplete: function() {
-            store.setTimelineInit(true);
-          },
+
           editable: {
             updateTime: true
           }

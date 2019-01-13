@@ -4,6 +4,8 @@
 
 <script>
 export default {
+  name: "Tab",
+  props: { name: String, selected: Boolean },
   data: function() {
     return {
       isActive: false
@@ -18,8 +20,6 @@ export default {
   },
   mounted() {
     this.isActive = this.selected;
-  },
-  props: { name: String, selected: Boolean },
-  name: "Tab"
+  }
 };
 </script>

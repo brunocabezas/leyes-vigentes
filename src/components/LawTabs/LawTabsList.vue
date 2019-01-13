@@ -3,19 +3,21 @@
     <div v-if="loading" class="loading-container">
       <clip-loader :loading="loading" color="#47c9af"></clip-loader>
     </div>
-    <virtual-list :size="40" :remain="8">
+    <virtual-list class="list-of-laws" :size="40" :remain="8">
       <li
         v-bind:class="{
           'list-of-laws__law--active': activeItem && activeItem == law.idNorma
         }"
         v-on:click="lawClick"
         :id="law.idNorma"
-        :title="'Started on ' + law.start"
+        :title="'Started on ' + law.fechaPublicacion"
         class="list-of-laws__law"
         v-for="(law, index) of laws"
         :key="index"
       >
-        ley Nº{{ law.numeroNorma }} - {{ law.Organismo }} - {{ law.tipoNorma }}
+        ley Nº {{ law.numeroNorma }} -
+        <tag field="department" :value="law.Organismo"></tag>
+        <tag field="type" :value="law.tipoNorma"></tag>
       </li>
     </virtual-list>
   </div>
@@ -23,6 +25,7 @@
 <script lang="">
 import virtualList from "vue-virtual-scroll-list";
 import store from "../../store";
+import Tag from "../Base/BaseTag.vue";
 import ClipLoader from "vue-spinner/src/ClipLoader.vue";
 
 export default {
@@ -32,6 +35,7 @@ export default {
   },
   components: {
     ClipLoader: ClipLoader,
+    tag: Tag,
     "virtual-list": virtualList
   },
   computed: {
