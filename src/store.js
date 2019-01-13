@@ -1,8 +1,11 @@
 /* eslint no-console: ["error", { allow: ["log"] }] */
+import { LawDetail } from "./models";
 
+const detail = new LawDetail();
 var date3MonthsAgo = new Date();
 date3MonthsAgo.setMonth(date3MonthsAgo.getMonth() - 3);
 export default {
+  debug: true,
   state: {
     loading: false, // loader indicator for dataº
     detailLoading: false,
@@ -11,7 +14,7 @@ export default {
       end: new Date().toLocaleDateString()
     },
     data: [],
-    detail: null,
+    detail,
     // Boolean to see if vis.js timeline component is already initialized
     timelineInit: false,
     // holds data from law used on <Explore/>

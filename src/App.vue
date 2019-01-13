@@ -19,13 +19,13 @@ import Header from "./components/AppHeader.vue";
 import Explorer from "./components/LawExplorer/LawExplorer.vue";
 import api, { mock } from "./api";
 import store from "./store";
-import Tabs from "./components/common/Tabs.vue";
-import Tab from "./components/common/Tab.vue";
+import Tabs from "./components/Base/BaseTabs.vue";
+import Tab from "./components/Base/BaseTab.vue";
 import Timeline from "./components/LawTabs/LawTabsTimeline.vue";
 import List from "./components/LawTabs/LawTabsList.vue";
 import DayCounter from "./components/LawTabs/LawTabsStatistics/DayCounter.vue";
 import laws from "../data/reduced.json";
-import detailedLaws from "../data/leyes3.json";
+import detailedLaws from "../data/leyes4.json";
 import { Range } from "./models";
 
 // Mock any GET request to /users
