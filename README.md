@@ -8,9 +8,11 @@
 - [x] Add more data attributes to laws
 - [ ] Top Filter section
   - [ ] Range picker must be nullable
+  - [ ] Pagination and number of laws?
   - [x] Add law types select
   - [ ] Reflect some filter values on url
-  - [ ] Read from url
+  - [ ] Add number of results input
+  - [ ] Read tabs from url
 - [ ] Different visualizations tabs to see current laws:
   - [ ] historic
     - [x] change current active law on click
@@ -22,7 +24,7 @@
     - [ ] display tags
     - [ ] show type as label and make it clickable
   - [ ] general statistics
-    - [ ] add more statistics
+    - [ ] more stats (Nº of laws, Nº days of period, Average promulgation gap, graph of types per law,)
     - [ ] show always general statistics
     - [ ] react to filters
     - [ ] Pdf export feature

@@ -7,7 +7,8 @@
       :items="data"
       :events="['changed', 'click']"
       @changed="myChangedCallback($event)"
-      @click="handleClick($event)">
+      @click="handleClick($event)"
+    >
     </vis-timeline>
   </div>
 </template>
@@ -23,7 +24,7 @@ const group = {
 };
 
 export default {
-  name: "timeline",
+  name: "LawTabsTimeline",
   data: function() {
     return {
       timelineGroups: [group]
@@ -143,5 +144,4 @@ export default {
 .events
   text-align: left;
   height: 70px;
-
 </style>

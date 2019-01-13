@@ -1,4 +1,4 @@
-<template >
+<template>
   <div class="app-header">
     <h1 class="app-header-title">Leyes Vigentes</h1>
     <select v-model="activeLawType">
@@ -11,17 +11,22 @@
       v-bind:max-date="now"
       v-bind:disabled="loading"
       locale="es"
+      v-on:input="changeRange($event)"
       formatted="ddd D MMM YYYY"
       auto-close
-      overlay-background
-      :label="label"
       v-model="dateRange"
       range-mode
     />
-    <button v-if="dateRange.start && dateRange.end" @click="clearRange()" name="button">x</button>
+    <button
+      v-if="dateRange.start && dateRange.end"
+      @click="clearRange()"
+      name="button"
+    >
+      x
+    </button>
   </div>
 </template>
-<script >
+<script>
 import Vue from "vue";
 import VueCtkDateTimePicker from "vue-ctk-date-time-picker";
 import { Range } from "../models";
@@ -30,7 +35,7 @@ import "vue-ctk-date-time-picker/dist/vue-ctk-date-time-picker.min.css";
 
 Vue.component("vue-ctk-date-time-picker", VueCtkDateTimePicker);
 export default {
-  name: "Header",
+  name: "AppHeader",
   data() {
     return {};
   },
@@ -92,17 +97,16 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-  .app-header
-    width 100%
-    display flex
-    align-items center
-    justify-content center
-    .app-header-title
-      flex 2
-      text-align left
-      padding 0.5rem 0.5rem 1.5rem 0.5rem
-      margin 0
-    .ctk-date-time-picker
-      flex 1
-
+.app-header
+  width 100%
+  display flex
+  align-items center
+  justify-content center
+  .app-header-title
+    flex 2
+    text-align left
+    padding 0.5rem 0.5rem 1.5rem 0.5rem
+    margin 0
+  .ctk-date-time-picker
+    flex 1
 </style>
