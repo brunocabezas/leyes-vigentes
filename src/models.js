@@ -22,6 +22,7 @@ export function LawDetail(
     idNorma,
     tipoNorma,
     numeroNorma,
+    TituloNorma,
     fechaPublicacion
   } = {
     HistoriaDeLaLey: "",
@@ -30,6 +31,7 @@ export function LawDetail(
     idNorma: "",
     tipoNorma: "",
     numeroNorma: "",
+    TituloNorma: "",
     fechaPublicacion: " "
   }
 ) {
@@ -38,6 +40,7 @@ export function LawDetail(
   this.Organismo = Organismo;
   this.idNorma = idNorma;
   this.tipoNorma = tipoNorma;
+  this.TituloNorma = TituloNorma;
   this.numeroNorma = numeroNorma;
   this.fechaPublicacion = fechaPublicacion;
 }

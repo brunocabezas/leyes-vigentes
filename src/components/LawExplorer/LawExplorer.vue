@@ -51,19 +51,17 @@ export default {
     },
     activeLaw: {
       get: function() {
-        const { activeLaw } = this.$root.$data.store;
-        return this.$root.$data.store.data.find(
-          l => parseInt(l.id, 10) === parseInt(activeLaw, 10)
+        return store.state.data.find(
+          l => parseInt(l.idNorma, 10) === parseInt(store.state.activeLaw, 10)
         );
       }
     }
   },
   watch: {
-    activeLaw: function(newValue, oldValue) {
-      this.fetchDetail(newValue.id);
+    activeLaw: function(newValue) {
+      this.fetchDetail(newValue.idNorma);
     },
-    lawDetail: function(newValue, oldValue) {
-      console.log(newValue, oldValue);
+    lawDetail: function(newValue) {
       return newValue;
     }
   },
@@ -75,9 +73,8 @@ export default {
         .get("/detail")
         .then(r => {
           // Finding corresponding detail
-          const laws = r.data.data.Normas.Norma;
+          const laws = r.data.data;
           const detail = laws.find(l => l.idNorma == id);
-          //console.log(detail, detail.idNorma, id);
           if (detail) store.setDetail(new LawDetail(detail));
         })
         .finally(() => store.setDetailLoading(false));
