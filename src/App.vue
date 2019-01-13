@@ -4,14 +4,10 @@
     <div class="app__content">
       <Tabs>
         <Tab name="List" :selected="true">
-          <List :laws="listData" :loading="loading"/>
+          <List :laws="listData" :loading="loading" />
         </Tab>
-        <Tab name="Timeline">
-          <Timeline  :range="rangeToTimeline()"/>
-        </Tab>
-        <Tab name="Statistics">
-          <DayCounter />
-        </Tab>
+        <Tab name="Timeline"> <Timeline :range="rangeToTimeline()" /> </Tab>
+        <Tab name="Statistics"> <DayCounter /> </Tab>
       </Tabs>
       <Explorer />
     </div>
@@ -19,15 +15,15 @@
 </template>
 
 <script>
-import Header from "./components/Header.vue";
-import Explorer from "./components/Explorer/Explorer.vue";
+import Header from "./components/AppHeader.vue";
+import Explorer from "./components/LawExplorer/LawExplorer.vue";
 import api, { mock } from "./api";
 import store from "./store";
 import Tabs from "./components/common/Tabs.vue";
 import Tab from "./components/common/Tab.vue";
-import Timeline from "./components/Tabs/Timeline.vue";
-import List from "./components/Tabs/List.vue";
-import DayCounter from "./components/Tabs/Statistics/DayCounter.vue";
+import Timeline from "./components/LawTabs/LawTabsTimeline.vue";
+import List from "./components/LawTabs/LawTabsList.vue";
+import DayCounter from "./components/LawTabs/LawTabsStatistics/DayCounter.vue";
 import laws from "../data/reduced.json";
 import detailedLaws from "../data/leyes3.json";
 import { Range } from "./models";
@@ -112,5 +108,4 @@ body
   max-height 100%
   .app__content
     padding 0 1em
-
 </style>

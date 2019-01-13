@@ -1,35 +1,36 @@
 <template>
   <div v-if="loading" class="loading-container">
-
-<clip-loader :loading="loading" color="#47c9af" ></clip-loader>
-
+    <clip-loader :loading="loading" color="#47c9af"></clip-loader>
   </div>
   <div v-else class="list-of-laws__container">
     <ul class="list-of-laws">
       <li
-        v-bind:class="{ 'list-of-laws__law--active': activeItem && activeItem==law.id }"
+        v-bind:class="{
+          'list-of-laws__law--active': activeItem && activeItem == law.id
+        }"
         v-on:click="lawClick"
         :id="law.id"
-        :title="'Started on '+ law.start"
+        :title="'Started on ' + law.start"
         :key="law.id"
         class="list-of-laws__law"
-        v-for="law in laws">
-        {{law.title}}
+        v-for="law in laws"
+      >
+        {{ law.title }}
       </li>
     </ul>
   </div>
 </template>
 <script lang="">
-import store from '../../store';
-import ClipLoader from 'vue-spinner/src/ClipLoader.vue'
+import store from "../../store";
+import ClipLoader from "vue-spinner/src/ClipLoader.vue";
 
 export default {
-  name: "list",
+  name: "LawTabsList",
   props: {
-    laws: Array,
+    laws: Array
   },
   components: {
-    'ClipLoader': ClipLoader
+    ClipLoader: ClipLoader
   },
   computed: {
     activeItem: {
@@ -49,7 +50,7 @@ export default {
       store.setActiveLaw(id);
     }
   }
-}
+};
 </script>
 <style lang="stylus" scoped>
 .loading-container
