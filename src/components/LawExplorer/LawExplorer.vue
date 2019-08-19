@@ -6,18 +6,17 @@
         <h3>Nº {{ detail.idNorma }}, {{ detail.TituloNorma }}</h3>
         <p>Publicada en {{ detail.fechaPublicacion }}</p>
         <div>
-          <tag field="department" :value="detail.Organismo"></tag> |
+          <tag field="department" :value="detail.Organismo"></tag>|
           <tag field="type" :value="detail.tipoNorma"></tag>
         </div>
         <p>
           <a
             :href="'https://www.leychile.cl/Navegar?idNorma=' + detail.idNorma"
             target="_blank"
-          >
-            detalles
-          </a>
+          >detalles</a>
           <span v-if="detail.HistoriaDeLaLey.length > 0">
-            | <a :href="detail.HistoriaDeLaLey">historia</a>
+            |
+            <a :href="detail.HistoriaDeLaLey">historia</a>
           </span>
         </p>
       </div>
@@ -30,7 +29,7 @@
 import ClipLoader from "vue-spinner/src/ClipLoader.vue";
 import { Law, LawDetail } from "../../models";
 import store from "../../store";
-import api from "../../api";
+import api from "../../../api/client";
 import Tag from "../Base/BaseTag.vue";
 
 export default {
