@@ -24,10 +24,10 @@ export default {
       }
     },
     lawTypes: function() {
-      return [
-        { name: " Please Select One", id: null },
-        ...this.$root.$data.store.lawTypes
-      ];
+      const lawTypes = this.$root.$data.store.lawTypes;
+      return Array.isArray(lawTypes)
+        ? [{ name: "Select one type", id: null }, ...lawTypes]
+        : [{ name: "Select one type", id: null }];
     },
     label: {
       get: function() {
@@ -59,7 +59,7 @@ export default {
   },
   methods: {
     changeRange(e) {
-      return store.setDateRange({ start: null, end: null });
+      // return store.setDateRange({ start: null, end: null });
     },
     clearRange() {
       return store.setDateRange({ start: null, end: null });

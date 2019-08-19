@@ -1,14 +1,26 @@
-export function VisTimelineOptions(start, end, editable) {
+// Timeline Tab (not used)
+export function VisJSOpts({ start, end }) {
   this.start = start;
   this.end = end;
-  this.editable = editable;
+  this.height = 300;
+  this.width = "100%";
+  this.maxHeight = 300;
+  this.zoomMin = 3600000;
+  this.zoomMax = 9461000000000;
+  this.max = new Date();
+  this.editable = {
+    updateTime: true
+  };
 }
+
 export function Range(from, to) {
   this.start = from;
   this.end = to;
 
   this.validator = prop => typeof prop === "string" || prop === null;
 }
+
+// Used on to list laws
 export function Law({ id, title, description, number, type, date, organism }) {
   this.id = id;
   this.title = title;

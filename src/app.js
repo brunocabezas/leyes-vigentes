@@ -4,7 +4,7 @@ import api from "../api/client";
 import store from "./store";
 import Tabs from "./components/Base/BaseTabs.vue";
 import Tab from "./components/Base/BaseTab.vue";
-import Timeline from "./components/LawTabs/LawTabsTimeline.vue";
+import Timeline from "./components/LawTabs/LawTabsTimeline/LawTabsTimeline.vue";
 import List from "./components/LawTabs/ListOfLaws/ListOfLaws.vue";
 import DayCounter from "./components/LawTabs/LawTabsStatistics/DayCounter.vue";
 import routes from "../api/routes.js";
@@ -67,17 +67,17 @@ export default {
       );
       return range;
     },
-    fetchData: function(p = { dateRange: {} }) {
-      const lawTypeFromStore = this.$root.$data.store.lawTypes.find(
-        l => l.id === this.lawTypeId
-      );
-      const params = {
-        from: (p.dateRange && p.dateRange.start) || this.dateRange.start,
-        to: (p.dateRange && p.dateRange.end) || this.dateRange.end,
-        lawType:
-          (p.lawType && p.lawType.name) ||
-          (lawTypeFromStore && lawTypeFromStore.name)
-      };
+    fetchData: function() {
+      // const lawTypeFromStore = this.$root.$data.store.lawTypes.find(
+      //   l => l.id === this.lawTypeId
+      // );
+      // const params = {
+      //   from: (p.dateRange && p.dateRange.start) || this.dateRange.start,
+      //   to: (p.dateRange && p.dateRange.end) || this.dateRange.end,
+      //   lawType:
+      //     (p.lawType && p.lawType.name) ||
+      //     (lawTypeFromStore && lawTypeFromStore.name)
+      // };
       store.setLoading(true);
       return api
         .get(routes.laws)
@@ -92,8 +92,9 @@ export default {
       store.setLoading(true);
       return api
         .get(routes.lawTypes)
-        .then(r => {
-          store.setLawTypes(r.data.data);
+        .then(({ data, ...others }) => {
+          console.log(data, others);
+          store.setLawTypes(data.data);
         })
         .finally(() => store.setLoading(false));
     }

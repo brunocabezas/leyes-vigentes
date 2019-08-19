@@ -31,3 +31,11 @@ export const parseLawsFromAPI = laws =>
         date: law.FECHA_PROMULGACION
       })
   );
+
+export const parseLawsToHistoricView = laws =>
+  laws.map(law => ({
+    id: parseInt(law.id, 10),
+    content: "ley " + law.id,
+    group: 0,
+    start: law.date
+  }));
