@@ -15,9 +15,9 @@
         v-for="(law, index) of laws"
         :key="index"
       >
-        ley Nº {{ law.TIPOS_NUMEROS && law.TIPOS_NUMEROS.TIPO_NUMERO && law.TIPOS_NUMEROS.TIPO_NUMERO.NUMERO }} -
-        <tag field="department" :value="law.Organismo"></tag>
-        <tag field="type" :value="law.tipoNorma"></tag>
+        ley Nº {{ getLawNumber(law) }} -
+        <tag field="department" :value="getLawDepartment(law)"></tag>
+        <tag field="type" :value="getLawType(law)"></tag>
       </li>
     </virtual-list>
   </div>
