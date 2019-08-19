@@ -5,7 +5,7 @@ import store from "./store";
 import Tabs from "./components/Base/BaseTabs.vue";
 import Tab from "./components/Base/BaseTab.vue";
 import Timeline from "./components/LawTabs/LawTabsTimeline.vue";
-import List from "./components/LawTabs/LawTabsList/LawTabsList.vue";
+import List from "./components/LawTabs/ListOfLaws/ListOfLaws.vue";
 import DayCounter from "./components/LawTabs/LawTabsStatistics/DayCounter.vue";
 import routes from "../api/routes.js";
 import { Range } from "./models";

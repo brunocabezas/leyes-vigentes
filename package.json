@@ -67,6 +67,8 @@
     "eslint-plugin-vue": "^5.2.3",
     "jest": "^23.6.0",
     "regenerator-runtime": "^0.12.1",
+    "vue-class-component": "^7.1.0",
+    "vue-property-decorator": "^8.2.1",
     "vue-template-compiler": "^2.6.10"
   }
 }

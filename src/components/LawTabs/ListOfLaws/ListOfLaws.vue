@@ -22,7 +22,7 @@
     </virtual-list>
   </div>
 </template>
-<script src="./lawTabsList.js"></script>
+<script src="./listOfLaws.js"></script>
 <style lang="stylus" scoped>
 .loading-container {
   display: flex;
