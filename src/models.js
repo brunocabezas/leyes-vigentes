@@ -9,14 +9,19 @@ export function Range(from, to) {
 
   this.validator = prop => typeof prop === "string" || prop === null;
 }
-export function Law(id, name) {
+export function Law({ id, title, description, number, type, date, organism }) {
   this.id = id;
-  this.name = name;
+  this.title = title;
+  this.number = number;
+  this.organism = organism;
+  this.description = description;
+  this.type = type;
+  this.date = date;
 }
 
 export function LawDetail(
   {
-    HistoriaDeLaLey,
+    HISTORIASLEY,
     IdentificacionNorma,
     Organismo,
     idNorma,
@@ -25,7 +30,7 @@ export function LawDetail(
     TituloNorma,
     fechaPublicacion
   } = {
-    HistoriaDeLaLey: "",
+    HISTORIASLEY: "",
     IdentificacionNorma: "",
     Organismo: "",
     idNorma: "",
@@ -35,7 +40,7 @@ export function LawDetail(
     fechaPublicacion: " "
   }
 ) {
-  this.HistoriaDeLaLey = HistoriaDeLaLey;
+  this.HistoriaDeLaLey = HISTORIASLEY;
   this.IdentificacionNorma = IdentificacionNorma;
   this.Organismo = Organismo;
   this.idNorma = idNorma;

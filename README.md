@@ -7,7 +7,7 @@
 - [x] Mock API to test requests to api based on dates
 - [x] Add more data attributes to laws
 - [ ] Top Filter section
-  - [ ] Range picker must be nullable
+  - [x] Range picker must be nullable
   - [ ] Pagination and number of laws?
   - [x] Add law types select
   - [ ] Reflect some filter values on url

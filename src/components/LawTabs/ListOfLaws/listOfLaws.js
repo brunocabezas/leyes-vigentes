@@ -4,14 +4,15 @@ import virtualList from "vue-virtual-scroll-list";
 import ClipLoader from "vue-spinner/src/ClipLoader.vue";
 import store from "../../../store";
 import Tag from "../../Base/BaseTag.vue";
-import {
-  getLawNumber,
-  getLawDepartment,
-  getLawType
-} from "../../../helpers/apiHelpers";
+import { Law } from "../../../models";
 
 @Component({
-  props: { laws: Array },
+  props: {
+    laws: Array,
+    validator: function(laws) {
+      return !laws.find(law => !law instanceof Law);
+    }
+  },
   components: {
     ClipLoader: ClipLoader,
     tag: Tag,
@@ -24,16 +25,6 @@ export default class ListOfLaws extends Vue {
   }
   get loading() {
     return store.state.loading;
-  }
-
-  getLawNumber(law) {
-    return getLawNumber(law);
-  }
-  getLawType(law) {
-    return getLawType(law);
-  }
-  getLawDepartment(law) {
-    return getLawDepartment(law);
   }
 
   lawClick(e) {

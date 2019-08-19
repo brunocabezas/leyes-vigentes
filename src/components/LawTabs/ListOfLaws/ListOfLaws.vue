@@ -1,23 +1,23 @@
 <template>
-  <div class="list-of-laws__container">
+  <div class="listOfLaws__container">
     <div v-if="loading" class="loading-container">
       <clip-loader :loading="loading" color="#47c9af"></clip-loader>
     </div>
-    <virtual-list class="list-of-laws" :size="40" :remain="8">
+    <virtual-list class="listOfLaws" :size="40" :remain="8">
       <li
         v-bind:class="{
-          'list-of-laws__law--active': activeItem && activeItem == law.idNorma
+          'listOfLaws__law--active': activeItem && activeItem == law.id
         }"
         v-on:click="lawClick"
-        :id="law.idNorma"
-        :title="'Started on ' + law.fechaPublicacion"
-        class="list-of-laws__law"
+        :id="law.id"
+        :title="`Publicada on ${law.date}`"
+        class="listOfLaws__law"
         v-for="(law, index) of laws"
         :key="index"
       >
-        ley Nº {{ getLawNumber(law) }} -
-        <tag field="department" :value="getLawDepartment(law)"></tag>
-        <tag field="type" :value="getLawType(law)"></tag>
+        ley Nº {{ law.number }} -
+        <tag field="department" :value="law.organism"></tag>
+        <tag field="type" :value="law.type"></tag>
       </li>
     </virtual-list>
   </div>
@@ -31,29 +31,29 @@
   height: 300px;
 }
 
-.list-of-laws__container {
-  border: 1px solid #ddd;
-}
-
-.list-of-laws {
+.listOfLaws {
   list-style-type: none;
   margin: 0;
-}
 
-.list-of-laws__law {
-  transition: background-color 0.3s;
-  text-align: left;
-  padding: 0.5em;
-  border-bottom: 1px solid #eee;
-
-  &:hover {
-    background-color: #eee;
-    cursor: pointer;
-    opacity: 0.7;
+  &__container {
+    border: 1px solid #ddd;
   }
 
-  &--active {
-    background-color: #eee;
+  &__law {
+    transition: background-color 0.3s;
+    text-align: left;
+    padding: 0.5em;
+    border-bottom: 1px solid #eee;
+
+    &:hover {
+      background-color: #eee;
+      cursor: pointer;
+      opacity: 0.7;
+    }
+
+    &--active {
+      background-color: #eee;
+    }
   }
 }
 </style>

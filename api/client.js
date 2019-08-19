@@ -13,7 +13,7 @@ const axiosInstance = axios.create({
 // For now, mocking all requests
 export const mock = new MockAdapter(axiosInstance, { delayResponse: 0 });
 mock.onGet(routes.laws).reply(200, { data: laws.NORMAS.NORMA });
-mock.onGet("/detail").reply(200, { data: laws.NORMAS.NORMA });
+mock.onGet(new RegExp(`law/*`)).reply(200, { data: laws.NORMAS.NORMA[0] });
 mock.onGet(routes.lawTypes).reply(200, {
   data: Array.from(
     new Set(

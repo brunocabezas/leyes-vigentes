@@ -4,7 +4,7 @@
     <div class="app__content">
       <Tabs>
         <Tab name="List" :selected="true">
-          <List :laws="listData" :loading="loading" />
+          <List :laws="laws" :loading="loading" />
         </Tab>
         <Tab name="Timeline">
           <Timeline :range="rangeToTimeline()" />
