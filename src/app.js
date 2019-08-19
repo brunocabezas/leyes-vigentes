@@ -5,7 +5,7 @@ import store from "./store";
 import Tabs from "./components/Base/BaseTabs.vue";
 import Tab from "./components/Base/BaseTab.vue";
 import Timeline from "./components/LawTabs/LawTabsTimeline.vue";
-import List from "./components/LawTabs/LawTabsList.vue";
+import List from "./components/LawTabs/LawTabsList/LawTabsList.vue";
 import DayCounter from "./components/LawTabs/LawTabsStatistics/DayCounter.vue";
 import routes from "../api/routes.js";
 import { Range } from "./models";
@@ -30,11 +30,18 @@ export default {
   computed: {
     listData: {
       get: function() {
+        const mappedLaws = this.$root.$data.store.data.map(r => ({
+          ...r,
+          id: parseInt(r.idNorma, 10),
+          title: "ley " + r.idNorma,
+          start: r.FECHA_PROMULGACION
+        }));
+        console.log(mappedLaws[0]);
         return this.$root.$data.store.data.map(r => ({
           ...r,
-          id: parseInt(r.id, 10),
-          title: "ley " + r.id,
-          start: r.date
+          id: parseInt(r.idNorma, 10),
+          title: "ley " + r.idNorma,
+          start: r.FECHA_PROMULGACION || new Date()
         }));
       }
     },
@@ -69,6 +76,8 @@ export default {
         this.$root.$data.store.filters.dateRange.start,
         this.$root.$data.store.filters.dateRange.end
       );
+
+      console.log(range);
       return range;
     },
     fetchData: function(p = { dateRange: {} }) {
@@ -86,13 +95,13 @@ export default {
       return api
         .get(routes.laws)
         .then(r => {
-          console.log(r.data.data);
+          // console.log(r.data.data);
           store.setData(r.data.data);
         })
         .finally(() => store.setLoading(false));
     },
     fetchLawTypes: function() {
-      console.log("fetchLawTypes");
+      // console.log("fetchLawTypes");
       store.setLoading(true);
       return api
         .get(routes.lawTypes)
